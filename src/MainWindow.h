@@ -14,6 +14,7 @@
 #include <memory>
 #include "AcademicManager.h"
 #include "AIClient.h"
+#include "SettingsDialog.h"
 
 // Forward declarations of our new widgets
 class StudentView;
@@ -32,6 +33,8 @@ private slots:
     // AI Chat
     void onSendChat();
     void appendChatMessage(const QString& sender, const QString& message);
+    void onSettings();
+    void onCopyResponse();
 
     // Sync slots (refresh views when tabs change)
     void onTabChanged(int index);
@@ -52,6 +55,10 @@ private:
     QTextEdit *m_chatDisplay;
     QLineEdit *m_chatInput;
     QPushButton *m_sendBtn;
+    QLabel *m_typingIndicator;
+    QPushButton *m_copyButton;
+
+    QString m_lastResponse;
 
     void setupUi();
     void setupManagementTab();

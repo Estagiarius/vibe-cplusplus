@@ -28,6 +28,7 @@ public:
     QString registerGrades(const QString& studentReg, const QString& courseName, double b1, double b2, double b3, double b4);
     QString getStudentReport(const QString& studentReg);
     QString getClassReport(const QString& courseName, const QString& semester);
+    QString analyzeClassPerformance(int classId);
 
     // Direct Data Access (For GUI Models)
     QList<Student> getAllStudents();
