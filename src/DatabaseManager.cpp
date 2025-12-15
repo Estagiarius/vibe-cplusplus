@@ -94,6 +94,52 @@ bool DatabaseManager::addStudent(const QString& name, const QString& registratio
     return true;
 }
 
+bool DatabaseManager::deleteClass(int id) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM classes WHERE id = ?");
+    query.addBindValue(id);
+    if (!query.exec()) {
+        qWarning() << "Failed to delete class:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+bool DatabaseManager::deleteCourse(int id) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM courses WHERE id = ?");
+    query.addBindValue(id);
+    if (!query.exec()) {
+        qWarning() << "Failed to delete course:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+bool DatabaseManager::deleteStudent(int id) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM students WHERE id = ?");
+    query.addBindValue(id);
+    if (!query.exec()) {
+        qWarning() << "Failed to delete student:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+bool DatabaseManager::updateCourse(int id, const QString &name, const QString &description) {
+    QSqlQuery query;
+    query.prepare("UPDATE courses SET name = ?, description = ? WHERE id = ?");
+    query.addBindValue(name);
+    query.addBindValue(description);
+    query.addBindValue(id);
+    if (!query.exec()) {
+        qWarning() << "Failed to update course:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
 QList<Student> DatabaseManager::getAllStudents() {
     QList<Student> list;
     QSqlQuery query("SELECT id, name, registration FROM students");
@@ -105,6 +151,39 @@ QList<Student> DatabaseManager::getAllStudents() {
         });
     }
     return list;
+}
+
+std::optional<Course> DatabaseManager::getCourseById(int id) {
+    QSqlQuery query;
+    query.prepare("SELECT id, name, description FROM courses WHERE id = ?");
+    query.addBindValue(id);
+    if (query.exec() && query.next()) {
+        return Course{query.value(0).toInt(), query.value(1).toString(), query.value(2).toString()};
+    }
+    return std::nullopt;
+}
+
+std::optional<Student> DatabaseManager::getStudentById(int id) {
+    QSqlQuery query;
+    query.prepare("SELECT id, name, registration FROM students WHERE id = ?");
+    query.addBindValue(id);
+    if (query.exec() && query.next()) {
+        return Student{query.value(0).toInt(), query.value(1).toString(), query.value(2).toString()};
+    }
+    return std::nullopt;
+}
+
+bool DatabaseManager::updateStudent(int id, const QString &name, const QString &registration) {
+    QSqlQuery query;
+    query.prepare("UPDATE students SET name = ?, registration = ? WHERE id = ?");
+    query.addBindValue(name);
+    query.addBindValue(registration);
+    query.addBindValue(id);
+    if (!query.exec()) {
+        qWarning() << "Failed to update student:" << query.lastError();
+        return false;
+    }
+    return true;
 }
 
 std::optional<Student> DatabaseManager::getStudentByRegistration(const QString& reg) {
@@ -195,6 +274,29 @@ QList<Class> DatabaseManager::getAllClasses() {
         });
     }
     return list;
+}
+
+bool DatabaseManager::updateClass(int id, int courseId, const QString &semester) {
+    QSqlQuery query;
+    query.prepare("UPDATE classes SET course_id = ?, semester = ? WHERE id = ?");
+    query.addBindValue(courseId);
+    query.addBindValue(semester);
+    query.addBindValue(id);
+    if (!query.exec()) {
+        qWarning() << "Failed to update class:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+std::optional<Class> DatabaseManager::getClassById(int id) {
+    QSqlQuery query;
+    query.prepare("SELECT id, course_id, semester FROM classes WHERE id = ?");
+    query.addBindValue(id);
+    if (query.exec() && query.next()) {
+        return Class{query.value(0).toInt(), query.value(1).toInt(), query.value(2).toString()};
+    }
+    return std::nullopt;
 }
 
 bool DatabaseManager::enrollStudent(int studentId, int classId) {

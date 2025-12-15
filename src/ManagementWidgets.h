@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTableView>
 #include <QStandardItemModel>
+#include <QSortFilterProxyModel>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QComboBox>
@@ -26,12 +27,18 @@ public:
 
 private slots:
     void onAdd();
+    void onShowContextMenu(const QPoint &pos);
+    void onEdit();
+    void onDelete();
+    void onSearch(const QString &text);
 
 private:
     std::shared_ptr<AcademicManager> m_manager;
     QTableView *m_table;
     QStandardItemModel *m_model;
+    QSortFilterProxyModel *m_proxyModel;
 
+    QLineEdit *m_searchEdit;
     QLineEdit *m_nameEdit;
     QLineEdit *m_regEdit;
 };
@@ -45,12 +52,18 @@ public:
 
 private slots:
     void onAdd();
+    void onShowContextMenu(const QPoint &pos);
+    void onEdit();
+    void onDelete();
+    void onSearch(const QString &text);
 
 private:
     std::shared_ptr<AcademicManager> m_manager;
     QTableView *m_table;
     QStandardItemModel *m_model;
+    QSortFilterProxyModel *m_proxyModel;
 
+    QLineEdit *m_searchEdit;
     QLineEdit *m_nameEdit;
     QLineEdit *m_descEdit;
 };
@@ -64,6 +77,9 @@ public:
 
 private slots:
     void onAdd();
+    void onShowContextMenu(const QPoint &pos);
+    void onEdit();
+    void onDelete();
 
 private:
     std::shared_ptr<AcademicManager> m_manager;

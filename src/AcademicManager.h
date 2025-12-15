@@ -23,8 +23,14 @@ public:
 
     // Facade methods (to be used by GUI and AI)
     QString addStudent(const QString& name, const QString& registration);
+    QString updateStudent(int studentId, const QString& name, const QString& registration);
+    QString deleteStudent(int studentId);
     QString createCourse(const QString& name, const QString& description);
+    QString updateCourse(int courseId, const QString& name, const QString& description);
+    QString deleteCourse(int courseId);
     QString openClass(const QString& courseName, const QString& semester); // AI might provide course name, not ID
+    QString updateClass(int classId, int courseId, const QString& semester);
+    QString deleteClass(int classId);
     QString registerGrades(const QString& studentReg, const QString& courseName, double b1, double b2, double b3, double b4);
     QString getStudentReport(const QString& studentReg);
     QString getClassReport(const QString& courseName, const QString& semester);

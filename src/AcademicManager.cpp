@@ -131,10 +131,38 @@ QString AcademicManager::addStudent(const QString& name, const QString& registra
     if (name.trimmed().isEmpty() || registration.trimmed().isEmpty()) {
         return "Error: Name and Registration cannot be empty.";
     }
+    if (m_db->getStudentByRegistration(registration)) {
+        return "Error: Student with this registration already exists.";
+    }
     if (m_db->addStudent(name, registration)) {
         return "Student added successfully: " + name;
     }
-    return "Failed to add student (might already exist).";
+    return "Failed to add student.";
+}
+
+QString AcademicManager::updateStudent(int studentId, const QString& name, const QString& registration) {
+    if (name.trimmed().isEmpty() || registration.trimmed().isEmpty()) {
+        return "Error: Name and Registration cannot be empty.";
+    }
+    if (m_db->updateStudent(studentId, name, registration)) {
+        return "Student updated successfully: " + name;
+    }
+    return "Failed to update student.";
+}
+
+QString AcademicManager::deleteStudent(int studentId) {
+    // Check for enrollments before deleting
+    auto classes = m_db->getAllClasses();
+    for (const auto& c : classes) {
+        if (m_db->getStudentGrade(studentId, c.id)) {
+            return "Error: Cannot delete student with existing enrollments.";
+        }
+    }
+
+    if (m_db->deleteStudent(studentId)) {
+        return "Student deleted successfully.";
+    }
+    return "Failed to delete student.";
 }
 
 QString AcademicManager::createCourse(const QString& name, const QString& description) {
@@ -147,9 +175,62 @@ QString AcademicManager::createCourse(const QString& name, const QString& descri
     return "Failed to create course.";
 }
 
+QString AcademicManager::updateCourse(int courseId, const QString& name, const QString& description) {
+    if (name.trimmed().isEmpty()) {
+        return "Error: Course name cannot be empty.";
+    }
+    if (m_db->updateCourse(courseId, name, description)) {
+        return "Course updated successfully: " + name;
+    }
+    return "Failed to update course.";
+}
+
+QString AcademicManager::deleteCourse(int courseId) {
+    // Check for classes associated with this course
+    auto classes = m_db->getAllClasses();
+    for (const auto& c : classes) {
+        if (c.courseId == courseId) {
+            return "Error: Cannot delete course with existing classes.";
+        }
+    }
+
+    if (m_db->deleteCourse(courseId)) {
+        return "Course deleted successfully.";
+    }
+    return "Failed to delete course.";
+}
+
+QString AcademicManager::updateClass(int classId, int courseId, const QString& semester) {
+    if (semester.trimmed().isEmpty()) {
+        return "Error: Semester cannot be empty.";
+    }
+    if (m_db->updateClass(classId, courseId, semester)) {
+        return "Class updated successfully.";
+    }
+    return "Failed to update class.";
+}
+
+QString AcademicManager::deleteClass(int classId) {
+    // Check for enrollments in this class
+    auto enrollments = m_db->getClassEnrollments(classId);
+    if (!enrollments.isEmpty()) {
+        return "Error: Cannot delete class with existing student enrollments.";
+    }
+
+    if (m_db->deleteClass(classId)) {
+        return "Class deleted successfully.";
+    }
+    return "Failed to delete class.";
+}
+
 QString AcademicManager::openClass(const QString& courseName, const QString& semester) {
     int cid = findCourseIdByName(courseName);
     if (cid == -1) return "Course not found: " + courseName;
+
+    // Check for duplicate class
+    if (findClassIdByCourseAndSemester(cid, semester) != -1) {
+        return "Error: Class already exists for this course and semester.";
+    }
 
     if (m_db->addClass(cid, semester)) {
         return "Class opened for " + courseName + " in " + semester;
