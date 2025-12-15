@@ -2,4 +2,6 @@
 #include "UVLADIE3JM/moc_AIClient.cpp"
 #include "UVLADIE3JM/moc_AcademicManager.cpp"
 #include "UVLADIE3JM/moc_DatabaseManager.cpp"
+#include "UVLADIE3JM/moc_GradebookView.cpp"
 #include "UVLADIE3JM/moc_MainWindow.cpp"
+#include "UVLADIE3JM/moc_ManagementWidgets.cpp"

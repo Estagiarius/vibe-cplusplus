@@ -153,6 +153,19 @@ TestLogic/fast:
 .PHONY : TestLogic/fast
 
 #=============================================================================
+# Target rules for targets named TestValidation
+
+# Build rule for target.
+TestValidation: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TestValidation
+.PHONY : TestValidation
+
+# fast build rule for target.
+TestValidation/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/build
+.PHONY : TestValidation/fast
+
+#=============================================================================
 # Target rules for targets named AcademicManager_autogen_timestamp_deps
 
 # Build rule for target.
@@ -204,6 +217,32 @@ TestLogic_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestLogic_autogen.dir/build.make CMakeFiles/TestLogic_autogen.dir/build
 .PHONY : TestLogic_autogen/fast
 
+#=============================================================================
+# Target rules for targets named TestValidation_autogen_timestamp_deps
+
+# Build rule for target.
+TestValidation_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TestValidation_autogen_timestamp_deps
+.PHONY : TestValidation_autogen_timestamp_deps
+
+# fast build rule for target.
+TestValidation_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation_autogen_timestamp_deps.dir/build.make CMakeFiles/TestValidation_autogen_timestamp_deps.dir/build
+.PHONY : TestValidation_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named TestValidation_autogen
+
+# Build rule for target.
+TestValidation_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TestValidation_autogen
+.PHONY : TestValidation_autogen
+
+# fast build rule for target.
+TestValidation_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation_autogen.dir/build.make CMakeFiles/TestValidation_autogen.dir/build
+.PHONY : TestValidation_autogen/fast
+
 AcademicManager_autogen/mocs_compilation.o: AcademicManager_autogen/mocs_compilation.cpp.o
 .PHONY : AcademicManager_autogen/mocs_compilation.o
 
@@ -252,6 +291,30 @@ TestLogic_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestLogic.dir/build.make CMakeFiles/TestLogic.dir/TestLogic_autogen/mocs_compilation.cpp.s
 .PHONY : TestLogic_autogen/mocs_compilation.cpp.s
 
+TestValidation_autogen/mocs_compilation.o: TestValidation_autogen/mocs_compilation.cpp.o
+.PHONY : TestValidation_autogen/mocs_compilation.o
+
+# target to build an object file
+TestValidation_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/TestValidation_autogen/mocs_compilation.cpp.o
+.PHONY : TestValidation_autogen/mocs_compilation.cpp.o
+
+TestValidation_autogen/mocs_compilation.i: TestValidation_autogen/mocs_compilation.cpp.i
+.PHONY : TestValidation_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+TestValidation_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/TestValidation_autogen/mocs_compilation.cpp.i
+.PHONY : TestValidation_autogen/mocs_compilation.cpp.i
+
+TestValidation_autogen/mocs_compilation.s: TestValidation_autogen/mocs_compilation.cpp.s
+.PHONY : TestValidation_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+TestValidation_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/TestValidation_autogen/mocs_compilation.cpp.s
+.PHONY : TestValidation_autogen/mocs_compilation.cpp.s
+
 src/AIClient.o: src/AIClient.cpp.o
 .PHONY : src/AIClient.o
 
@@ -283,6 +346,7 @@ src/AcademicManager.o: src/AcademicManager.cpp.o
 src/AcademicManager.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/AcademicManager.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestLogic.dir/build.make CMakeFiles/TestLogic.dir/src/AcademicManager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/src/AcademicManager.cpp.o
 .PHONY : src/AcademicManager.cpp.o
 
 src/AcademicManager.i: src/AcademicManager.cpp.i
@@ -292,6 +356,7 @@ src/AcademicManager.i: src/AcademicManager.cpp.i
 src/AcademicManager.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/AcademicManager.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestLogic.dir/build.make CMakeFiles/TestLogic.dir/src/AcademicManager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/src/AcademicManager.cpp.i
 .PHONY : src/AcademicManager.cpp.i
 
 src/AcademicManager.s: src/AcademicManager.cpp.s
@@ -301,6 +366,7 @@ src/AcademicManager.s: src/AcademicManager.cpp.s
 src/AcademicManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/AcademicManager.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestLogic.dir/build.make CMakeFiles/TestLogic.dir/src/AcademicManager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/src/AcademicManager.cpp.s
 .PHONY : src/AcademicManager.cpp.s
 
 src/DatabaseManager.o: src/DatabaseManager.cpp.o
@@ -310,6 +376,7 @@ src/DatabaseManager.o: src/DatabaseManager.cpp.o
 src/DatabaseManager.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/DatabaseManager.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestLogic.dir/build.make CMakeFiles/TestLogic.dir/src/DatabaseManager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/src/DatabaseManager.cpp.o
 .PHONY : src/DatabaseManager.cpp.o
 
 src/DatabaseManager.i: src/DatabaseManager.cpp.i
@@ -319,6 +386,7 @@ src/DatabaseManager.i: src/DatabaseManager.cpp.i
 src/DatabaseManager.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/DatabaseManager.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestLogic.dir/build.make CMakeFiles/TestLogic.dir/src/DatabaseManager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/src/DatabaseManager.cpp.i
 .PHONY : src/DatabaseManager.cpp.i
 
 src/DatabaseManager.s: src/DatabaseManager.cpp.s
@@ -328,7 +396,32 @@ src/DatabaseManager.s: src/DatabaseManager.cpp.s
 src/DatabaseManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/DatabaseManager.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestLogic.dir/build.make CMakeFiles/TestLogic.dir/src/DatabaseManager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/src/DatabaseManager.cpp.s
 .PHONY : src/DatabaseManager.cpp.s
+
+src/GradebookView.o: src/GradebookView.cpp.o
+.PHONY : src/GradebookView.o
+
+# target to build an object file
+src/GradebookView.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o
+.PHONY : src/GradebookView.cpp.o
+
+src/GradebookView.i: src/GradebookView.cpp.i
+.PHONY : src/GradebookView.i
+
+# target to preprocess a source file
+src/GradebookView.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.i
+.PHONY : src/GradebookView.cpp.i
+
+src/GradebookView.s: src/GradebookView.cpp.s
+.PHONY : src/GradebookView.s
+
+# target to generate assembly for a file
+src/GradebookView.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.s
+.PHONY : src/GradebookView.cpp.s
 
 src/MainWindow.o: src/MainWindow.cpp.o
 .PHONY : src/MainWindow.o
@@ -353,6 +446,30 @@ src/MainWindow.s: src/MainWindow.cpp.s
 src/MainWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.s
 .PHONY : src/MainWindow.cpp.s
+
+src/ManagementWidgets.o: src/ManagementWidgets.cpp.o
+.PHONY : src/ManagementWidgets.o
+
+# target to build an object file
+src/ManagementWidgets.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o
+.PHONY : src/ManagementWidgets.cpp.o
+
+src/ManagementWidgets.i: src/ManagementWidgets.cpp.i
+.PHONY : src/ManagementWidgets.i
+
+# target to preprocess a source file
+src/ManagementWidgets.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.i
+.PHONY : src/ManagementWidgets.cpp.i
+
+src/ManagementWidgets.s: src/ManagementWidgets.cpp.s
+.PHONY : src/ManagementWidgets.s
+
+# target to generate assembly for a file
+src/ManagementWidgets.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.s
+.PHONY : src/ManagementWidgets.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -402,6 +519,30 @@ tests/test_logic.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestLogic.dir/build.make CMakeFiles/TestLogic.dir/tests/test_logic.cpp.s
 .PHONY : tests/test_logic.cpp.s
 
+tests/test_validation.o: tests/test_validation.cpp.o
+.PHONY : tests/test_validation.o
+
+# target to build an object file
+tests/test_validation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/tests/test_validation.cpp.o
+.PHONY : tests/test_validation.cpp.o
+
+tests/test_validation.i: tests/test_validation.cpp.i
+.PHONY : tests/test_validation.i
+
+# target to preprocess a source file
+tests/test_validation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/tests/test_validation.cpp.i
+.PHONY : tests/test_validation.cpp.i
+
+tests/test_validation.s: tests/test_validation.cpp.s
+.PHONY : tests/test_validation.s
+
+# target to generate assembly for a file
+tests/test_validation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TestValidation.dir/build.make CMakeFiles/TestValidation.dir/tests/test_validation.cpp.s
+.PHONY : tests/test_validation.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -415,14 +556,20 @@ help:
 	@echo "... AcademicManager_autogen_timestamp_deps"
 	@echo "... TestLogic_autogen"
 	@echo "... TestLogic_autogen_timestamp_deps"
+	@echo "... TestValidation_autogen"
+	@echo "... TestValidation_autogen_timestamp_deps"
 	@echo "... AcademicManager"
 	@echo "... TestLogic"
+	@echo "... TestValidation"
 	@echo "... AcademicManager_autogen/mocs_compilation.o"
 	@echo "... AcademicManager_autogen/mocs_compilation.i"
 	@echo "... AcademicManager_autogen/mocs_compilation.s"
 	@echo "... TestLogic_autogen/mocs_compilation.o"
 	@echo "... TestLogic_autogen/mocs_compilation.i"
 	@echo "... TestLogic_autogen/mocs_compilation.s"
+	@echo "... TestValidation_autogen/mocs_compilation.o"
+	@echo "... TestValidation_autogen/mocs_compilation.i"
+	@echo "... TestValidation_autogen/mocs_compilation.s"
 	@echo "... src/AIClient.o"
 	@echo "... src/AIClient.i"
 	@echo "... src/AIClient.s"
@@ -432,15 +579,24 @@ help:
 	@echo "... src/DatabaseManager.o"
 	@echo "... src/DatabaseManager.i"
 	@echo "... src/DatabaseManager.s"
+	@echo "... src/GradebookView.o"
+	@echo "... src/GradebookView.i"
+	@echo "... src/GradebookView.s"
 	@echo "... src/MainWindow.o"
 	@echo "... src/MainWindow.i"
 	@echo "... src/MainWindow.s"
+	@echo "... src/ManagementWidgets.o"
+	@echo "... src/ManagementWidgets.i"
+	@echo "... src/ManagementWidgets.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
 	@echo "... tests/test_logic.o"
 	@echo "... tests/test_logic.i"
 	@echo "... tests/test_logic.s"
+	@echo "... tests/test_validation.o"
+	@echo "... tests/test_validation.i"
+	@echo "... tests/test_validation.s"
 .PHONY : help
 
 

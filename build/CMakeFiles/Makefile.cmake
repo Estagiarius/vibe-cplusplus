@@ -171,6 +171,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/AcademicManager_autogen.dir/AutogenInfo.json"
   "CMakeFiles/TestLogic_autogen.dir/AutogenInfo.json"
+  "CMakeFiles/TestValidation_autogen.dir/AutogenInfo.json"
   ".qt/QtDeploySupport.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
@@ -179,8 +180,11 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/AcademicManager.dir/DependInfo.cmake"
   "CMakeFiles/TestLogic.dir/DependInfo.cmake"
+  "CMakeFiles/TestValidation.dir/DependInfo.cmake"
   "CMakeFiles/AcademicManager_autogen_timestamp_deps.dir/DependInfo.cmake"
   "CMakeFiles/AcademicManager_autogen.dir/DependInfo.cmake"
   "CMakeFiles/TestLogic_autogen_timestamp_deps.dir/DependInfo.cmake"
   "CMakeFiles/TestLogic_autogen.dir/DependInfo.cmake"
+  "CMakeFiles/TestValidation_autogen_timestamp_deps.dir/DependInfo.cmake"
+  "CMakeFiles/TestValidation_autogen.dir/DependInfo.cmake"
   )

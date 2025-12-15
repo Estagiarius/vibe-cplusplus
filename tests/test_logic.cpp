@@ -52,8 +52,9 @@ void TestLogic::testGradesApproval() {
     // Prerequisite: Student and Class exist from previous tests
     // John Doe (12345), Math, 2023.1
 
-    // Register grades: 6, 6, 6, 6 -> Avg 6 -> Approved
-    QString res = manager->registerGrades("12345", "Math", 6.0, 6.0, 6.0, 6.0);
+    // Register grades: 7.5, 7.5, 7.5, 7.5 -> Avg 7.5 -> Approved
+    // (Updated to >= 7.0 rule)
+    QString res = manager->registerGrades("12345", "Math", 7.5, 7.5, 7.5, 7.5);
 
     QVERIFY(res.contains("Approved"));
 
@@ -64,7 +65,7 @@ void TestLogic::testGradesApproval() {
 
     auto grade = db->getStudentGrade(s->id, classId);
     QVERIFY(grade.has_value());
-    QCOMPARE(grade->b1, 6.0);
+    QCOMPARE(grade->b1, 7.5);
 }
 
 void TestLogic::testGradesFailure() {

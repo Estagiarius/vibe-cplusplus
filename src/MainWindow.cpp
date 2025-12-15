@@ -1,4 +1,6 @@
 #include "MainWindow.h"
+#include "ManagementWidgets.h"
+#include "GradebookView.h"
 #include <QMessageBox>
 #include <QFormLayout>
 #include <QGroupBox>
@@ -19,37 +21,45 @@ void MainWindow::setupUi() {
     setCentralWidget(centralWidget);
     QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
 
-    m_tabs = new QTabWidget(this);
-    mainLayout->addWidget(m_tabs);
+    m_mainTabs = new QTabWidget(this);
+    mainLayout->addWidget(m_mainTabs);
 
     setupManagementTab();
     setupChatTab();
+
+    connect(m_mainTabs, &QTabWidget::currentChanged, this, &MainWindow::onTabChanged);
 }
 
 void MainWindow::setupManagementTab() {
-    QWidget *tab = new QWidget();
-    QVBoxLayout *layout = new QVBoxLayout(tab);
+    // Instead of a single widget, we use nested tabs for different management entities
+    QTabWidget *mgmtTabs = new QTabWidget();
 
-    // Student Section
-    QGroupBox *studentGroup = new QGroupBox("Add Student");
-    QFormLayout *studentLayout = new QFormLayout(studentGroup);
+    // 1. Students
+    m_studentView = new StudentView(m_manager);
+    mgmtTabs->addTab(m_studentView, "Students");
 
-    m_studentNameEdit = new QLineEdit();
-    m_studentRegEdit = new QLineEdit();
-    QPushButton *addStudentBtn = new QPushButton("Add Student");
+    // 2. Courses
+    m_courseView = new CourseView(m_manager);
+    mgmtTabs->addTab(m_courseView, "Courses");
 
-    studentLayout->addRow("Name:", m_studentNameEdit);
-    studentLayout->addRow("Registration:", m_studentRegEdit);
-    studentLayout->addRow(addStudentBtn);
+    // 3. Classes
+    m_classView = new ClassView(m_manager);
+    mgmtTabs->addTab(m_classView, "Classes");
 
-    connect(addStudentBtn, &QPushButton::clicked, this, &MainWindow::onAddStudent);
+    // 4. Gradebook
+    m_gradebookView = new GradebookView(m_manager);
+    mgmtTabs->addTab(m_gradebookView, "Gradebook");
 
-    layout->addWidget(studentGroup);
+    // Add logic to refresh specific tab when selected?
+    // For now, views refresh themselves on actions, but might need refresh if data changed elsewhere.
+    connect(mgmtTabs, &QTabWidget::currentChanged, [this](int index) {
+        if (index == 0) m_studentView->refresh();
+        if (index == 1) m_courseView->refresh();
+        if (index == 2) m_classView->refresh();
+        if (index == 3) m_gradebookView->refreshClasses();
+    });
 
-    // Placeholder for more management tools
-    layout->addStretch();
-
-    m_tabs->addTab(tab, "Management");
+    m_mainTabs->addTab(mgmtTabs, "Management");
 }
 
 void MainWindow::setupChatTab() {
@@ -72,27 +82,12 @@ void MainWindow::setupChatTab() {
     connect(m_sendBtn, &QPushButton::clicked, this, &MainWindow::onSendChat);
     connect(m_chatInput, &QLineEdit::returnPressed, this, &MainWindow::onSendChat);
 
-    m_tabs->addTab(tab, "AI Assistant");
+    m_mainTabs->addTab(tab, "AI Assistant");
 }
 
-void MainWindow::onAddStudent() {
-    QString name = m_studentNameEdit->text();
-    QString reg = m_studentRegEdit->text();
-
-    if (name.isEmpty() || reg.isEmpty()) {
-        QMessageBox::warning(this, "Error", "Please fill all fields");
-        return;
-    }
-
-    QString result = m_manager->addStudent(name, reg);
-    QMessageBox::information(this, "Result", result);
-
-    m_studentNameEdit->clear();
-    m_studentRegEdit->clear();
-}
-
-void MainWindow::onAddCourse() {
-    // Implementation pending for manual add
+void MainWindow::onTabChanged(int index) {
+    // If we switch back to Management, maybe refresh the current sub-tab?
+    // Not strictly necessary if the sub-tab handler handles it.
 }
 
 void MainWindow::onSendChat() {
@@ -109,6 +104,13 @@ void MainWindow::onSendChat() {
         m_chatInput->setEnabled(true);
         m_sendBtn->setEnabled(true);
         m_chatInput->setFocus();
+
+        // After AI action, refresh views just in case
+        // We could emit a signal, or just brute force refresh visible ones
+        if (m_studentView) m_studentView->refresh();
+        if (m_courseView) m_courseView->refresh();
+        if (m_classView) m_classView->refresh();
+        if (m_gradebookView) m_gradebookView->refreshClasses(); // Updates combo box if courses added
     });
 }
 

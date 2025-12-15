@@ -30,35 +30,35 @@ namespace {
 struct qt_meta_stringdata_MainWindow_t {
     uint offsetsAndSizes[16];
     char stringdata0[11];
-    char stringdata1[13];
+    char stringdata1[11];
     char stringdata2[1];
-    char stringdata3[12];
-    char stringdata4[11];
-    char stringdata5[18];
-    char stringdata6[7];
-    char stringdata7[8];
+    char stringdata3[18];
+    char stringdata4[7];
+    char stringdata5[8];
+    char stringdata6[13];
+    char stringdata7[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MainWindow_t::offsetsAndSizes) + ofs), len
 Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
         QT_MOC_LITERAL(0, 10),  // "MainWindow"
-        QT_MOC_LITERAL(11, 12),  // "onAddStudent"
-        QT_MOC_LITERAL(24, 0),  // ""
-        QT_MOC_LITERAL(25, 11),  // "onAddCourse"
-        QT_MOC_LITERAL(37, 10),  // "onSendChat"
-        QT_MOC_LITERAL(48, 17),  // "appendChatMessage"
-        QT_MOC_LITERAL(66, 6),  // "sender"
-        QT_MOC_LITERAL(73, 7)   // "message"
+        QT_MOC_LITERAL(11, 10),  // "onSendChat"
+        QT_MOC_LITERAL(22, 0),  // ""
+        QT_MOC_LITERAL(23, 17),  // "appendChatMessage"
+        QT_MOC_LITERAL(41, 6),  // "sender"
+        QT_MOC_LITERAL(48, 7),  // "message"
+        QT_MOC_LITERAL(56, 12),  // "onTabChanged"
+        QT_MOC_LITERAL(69, 5)   // "index"
     },
     "MainWindow",
-    "onAddStudent",
-    "",
-    "onAddCourse",
     "onSendChat",
+    "",
     "appendChatMessage",
     "sender",
-    "message"
+    "message",
+    "onTabChanged",
+    "index"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -69,7 +69,7 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -77,16 +77,14 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   38,    2, 0x08,    1 /* Private */,
-       3,    0,   39,    2, 0x08,    2 /* Private */,
-       4,    0,   40,    2, 0x08,    3 /* Private */,
-       5,    2,   41,    2, 0x08,    4 /* Private */,
+       1,    0,   32,    2, 0x08,    1 /* Private */,
+       3,    2,   33,    2, 0x08,    2 /* Private */,
+       6,    1,   38,    2, 0x08,    5 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,    6,    7,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    4,    5,
+    QMetaType::Void, QMetaType::Int,    7,
 
        0        // eod
 };
@@ -100,16 +98,15 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
-        // method 'onAddStudent'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'onAddCourse'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'onSendChat'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'appendChatMessage'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'onTabChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
 } };
@@ -120,10 +117,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->onAddStudent(); break;
-        case 1: _t->onAddCourse(); break;
-        case 2: _t->onSendChat(); break;
-        case 3: _t->appendChatMessage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 0: _t->onSendChat(); break;
+        case 1: _t->appendChatMessage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 2: _t->onTabChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -148,13 +144,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 3)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 3;
     }
     return _id;
 }

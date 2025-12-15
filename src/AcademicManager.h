@@ -27,6 +27,17 @@ public:
     QString openClass(const QString& courseName, const QString& semester); // AI might provide course name, not ID
     QString registerGrades(const QString& studentReg, const QString& courseName, double b1, double b2, double b3, double b4);
     QString getStudentReport(const QString& studentReg);
+    QString getClassReport(const QString& courseName, const QString& semester);
+
+    // Direct Data Access (For GUI Models)
+    QList<Student> getAllStudents();
+    QList<Course> getAllCourses();
+    QList<Class> getAllClasses();
+    QList<ClassEnrollment> getClassEnrollments(int classId);
+
+    // Grade update by IDs (GUI direct update)
+    bool updateGradesById(int studentId, int classId, double b1, double b2, double b3, double b4, double finalGrade);
+    bool enrollStudentById(int studentId, int classId);
 
 private:
     std::shared_ptr<DatabaseManager> m_db;

@@ -15,6 +15,12 @@
 #include "AcademicManager.h"
 #include "AIClient.h"
 
+// Forward declarations of our new widgets
+class StudentView;
+class CourseView;
+class ClassView;
+class GradebookView;
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
@@ -23,23 +29,24 @@ public:
     ~MainWindow();
 
 private slots:
-    // Manual Operations
-    void onAddStudent();
-    void onAddCourse();
-
     // AI Chat
     void onSendChat();
     void appendChatMessage(const QString& sender, const QString& message);
+
+    // Sync slots (refresh views when tabs change)
+    void onTabChanged(int index);
 
 private:
     std::shared_ptr<AcademicManager> m_manager;
     std::shared_ptr<AIClient> m_aiClient;
 
-    QTabWidget *m_tabs;
+    QTabWidget *m_mainTabs;
 
-    // Management Widgets
-    QLineEdit *m_studentNameEdit;
-    QLineEdit *m_studentRegEdit;
+    // Management Views
+    StudentView *m_studentView;
+    CourseView *m_courseView;
+    ClassView *m_classView;
+    GradebookView *m_gradebookView;
 
     // Chat Widgets
     QTextEdit *m_chatDisplay;

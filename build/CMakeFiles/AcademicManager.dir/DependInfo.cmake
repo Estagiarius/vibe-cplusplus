@@ -13,7 +13,9 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/app/src/AIClient.cpp" "CMakeFiles/AcademicManager.dir/src/AIClient.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/AIClient.cpp.o.d"
   "/app/src/AcademicManager.cpp" "CMakeFiles/AcademicManager.dir/src/AcademicManager.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/AcademicManager.cpp.o.d"
   "/app/src/DatabaseManager.cpp" "CMakeFiles/AcademicManager.dir/src/DatabaseManager.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/DatabaseManager.cpp.o.d"
+  "/app/src/GradebookView.cpp" "CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o.d"
   "/app/src/MainWindow.cpp" "CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o.d"
+  "/app/src/ManagementWidgets.cpp" "CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o.d"
   "/app/src/main.cpp" "CMakeFiles/AcademicManager.dir/src/main.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/main.cpp.o.d"
   )
 

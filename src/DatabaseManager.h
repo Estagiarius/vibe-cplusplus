@@ -8,6 +8,7 @@
 #include <QVariant>
 #include <QString>
 #include <QList>
+#include <optional>
 
 struct Student {
     int id;
@@ -36,6 +37,13 @@ struct Grade {
     bool hasFinal;
 };
 
+struct ClassEnrollment {
+    int studentId;
+    QString studentName;
+    QString studentReg;
+    Grade grade;
+};
+
 class DatabaseManager : public QObject {
     Q_OBJECT
 public:
@@ -61,6 +69,7 @@ public:
     bool enrollStudent(int studentId, int classId);
     bool updateGrades(int studentId, int classId, double b1, double b2, double b3, double b4, double finalGrade = -1);
     std::optional<Grade> getStudentGrade(int studentId, int classId);
+    QList<ClassEnrollment> getClassEnrollments(int classId);
 
     QSqlDatabase getDb() const { return m_db; }
 

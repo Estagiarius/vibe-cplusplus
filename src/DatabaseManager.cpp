@@ -121,6 +121,40 @@ std::optional<Student> DatabaseManager::getStudentByRegistration(const QString& 
     return std::nullopt;
 }
 
+QList<ClassEnrollment> DatabaseManager::getClassEnrollments(int classId) {
+    QList<ClassEnrollment> list;
+    QSqlQuery query;
+    query.prepare("SELECT g.id, g.student_id, s.name, s.registration, g.class_id, "
+                  "g.b1, g.b2, g.b3, g.b4, g.final_grade "
+                  "FROM grades g "
+                  "JOIN students s ON g.student_id = s.id "
+                  "WHERE g.class_id = :cid");
+    query.bindValue(":cid", classId);
+
+    if (query.exec()) {
+        while (query.next()) {
+            ClassEnrollment ce;
+            ce.grade.id = query.value(0).toInt();
+            ce.studentId = query.value(1).toInt(); // g.student_id
+            ce.studentName = query.value(2).toString();
+            ce.studentReg = query.value(3).toString();
+            ce.grade.studentId = ce.studentId;
+            ce.grade.classId = query.value(4).toInt();
+            ce.grade.b1 = query.value(5).toDouble();
+            ce.grade.b2 = query.value(6).toDouble();
+            ce.grade.b3 = query.value(7).toDouble();
+            ce.grade.b4 = query.value(8).toDouble();
+            ce.grade.finalGrade = query.value(9).toDouble();
+            ce.grade.hasFinal = (ce.grade.finalGrade >= 0);
+
+            list.append(ce);
+        }
+    } else {
+        qWarning() << "Error fetching class enrollments:" << query.lastError().text();
+    }
+    return list;
+}
+
 bool DatabaseManager::addCourse(const QString& name, const QString& description) {
     QSqlQuery query;
     query.prepare("INSERT INTO courses (name, description) VALUES (:name, :desc)");

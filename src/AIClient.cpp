@@ -80,6 +80,38 @@ void AIClient::setupTools() {
     m_tools.append(addStudentTool);
     m_tools.append(addCourseTool);
     m_tools.append(updateGradeTool);
+
+    QJsonObject getStudentReportTool;
+    getStudentReportTool["type"] = "function";
+    QJsonObject gsrFunc;
+    gsrFunc["name"] = "get_student_report";
+    gsrFunc["description"] = "Get a report of a student's grades and status in all classes.";
+    QJsonObject gsrParams;
+    gsrParams["type"] = "object";
+    QJsonObject gsrProps;
+    gsrProps["registration"] = QJsonObject{{"type", "string"}, {"description", "Student Registration ID"}};
+    gsrParams["properties"] = gsrProps;
+    gsrParams["required"] = QJsonArray{"registration"};
+    gsrFunc["parameters"] = gsrParams;
+    getStudentReportTool["function"] = gsrFunc;
+
+    QJsonObject getClassReportTool;
+    getClassReportTool["type"] = "function";
+    QJsonObject gcrFunc;
+    gcrFunc["name"] = "get_class_report";
+    gcrFunc["description"] = "Get a statistical report of a specific class (course + semester).";
+    QJsonObject gcrParams;
+    gcrParams["type"] = "object";
+    QJsonObject gcrProps;
+    gcrProps["course_name"] = QJsonObject{{"type", "string"}};
+    gcrProps["semester"] = QJsonObject{{"type", "string"}};
+    gcrParams["properties"] = gcrProps;
+    gcrParams["required"] = QJsonArray{"course_name", "semester"};
+    gcrFunc["parameters"] = gcrParams;
+    getClassReportTool["function"] = gcrFunc;
+
+    m_tools.append(getStudentReportTool);
+    m_tools.append(getClassReportTool);
 }
 
 void AIClient::sendMessage(const QString& userMessage, std::function<void(QString)> callback) {
@@ -164,6 +196,15 @@ void AIClient::executeTool(const QString& name, const QJsonObject& args, std::fu
             args["b2"].toDouble(),
             args["b3"].toDouble(),
             args["b4"].toDouble()
+        );
+    } else if (name == "get_student_report") {
+        result = m_manager->getStudentReport(
+            args["registration"].toString()
+        );
+    } else if (name == "get_class_report") {
+        result = m_manager->getClassReport(
+            args["course_name"].toString(),
+            args["semester"].toString()
         );
     } else {
         result = "Unknown tool: " + name;

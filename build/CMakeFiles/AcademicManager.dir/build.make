@@ -160,6 +160,34 @@ CMakeFiles/AcademicManager.dir/src/AIClient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AcademicManager.dir/src/AIClient.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/AIClient.cpp -o CMakeFiles/AcademicManager.dir/src/AIClient.cpp.s
 
+CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o: CMakeFiles/AcademicManager.dir/flags.make
+CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o: /app/src/ManagementWidgets.cpp
+CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o: CMakeFiles/AcademicManager.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o -MF CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o.d -o CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o -c /app/src/ManagementWidgets.cpp
+
+CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/src/ManagementWidgets.cpp > CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.i
+
+CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/ManagementWidgets.cpp -o CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.s
+
+CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o: CMakeFiles/AcademicManager.dir/flags.make
+CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o: /app/src/GradebookView.cpp
+CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o: CMakeFiles/AcademicManager.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o -MF CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o.d -o CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o -c /app/src/GradebookView.cpp
+
+CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/src/GradebookView.cpp > CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.i
+
+CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/GradebookView.cpp -o CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.s
+
 # Object files for target AcademicManager
 AcademicManager_OBJECTS = \
 "CMakeFiles/AcademicManager.dir/AcademicManager_autogen/mocs_compilation.cpp.o" \
@@ -167,7 +195,9 @@ AcademicManager_OBJECTS = \
 "CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o" \
 "CMakeFiles/AcademicManager.dir/src/DatabaseManager.cpp.o" \
 "CMakeFiles/AcademicManager.dir/src/AcademicManager.cpp.o" \
-"CMakeFiles/AcademicManager.dir/src/AIClient.cpp.o"
+"CMakeFiles/AcademicManager.dir/src/AIClient.cpp.o" \
+"CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o" \
+"CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o"
 
 # External object files for target AcademicManager
 AcademicManager_EXTERNAL_OBJECTS =
@@ -178,6 +208,8 @@ AcademicManager: CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o
 AcademicManager: CMakeFiles/AcademicManager.dir/src/DatabaseManager.cpp.o
 AcademicManager: CMakeFiles/AcademicManager.dir/src/AcademicManager.cpp.o
 AcademicManager: CMakeFiles/AcademicManager.dir/src/AIClient.cpp.o
+AcademicManager: CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o
+AcademicManager: CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o
 AcademicManager: CMakeFiles/AcademicManager.dir/build.make
 AcademicManager: /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2
 AcademicManager: /usr/lib/x86_64-linux-gnu/libQt6Sql.so.6.4.2
@@ -187,7 +219,7 @@ AcademicManager: /usr/lib/x86_64-linux-gnu/libGLX.so
 AcademicManager: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 AcademicManager: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
 AcademicManager: CMakeFiles/AcademicManager.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable AcademicManager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable AcademicManager"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AcademicManager.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

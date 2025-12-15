@@ -59,7 +59,7 @@ StudentStatus AcademicManager::calculateStatus(int studentId, int classId) {
         } else if (avg >= 4.0) {
             // Eligible for final
             approved = false;
-            msg = "Needs Final Exam";
+            msg = "Needs Final Exam (Recuperação)";
         } else {
             approved = false;
             msg = "Failed";
@@ -69,10 +69,22 @@ StudentStatus AcademicManager::calculateStatus(int studentId, int classId) {
         // maybe the passing grade IS 5.0 straight up?
         // "Mantenha média >= 5,0".
         // If the user means passing grade is 5.0:
-        if (avg >= 5.0) {
-             approved = true;
-             msg = "Approved";
-        }
+        // IMPORTANT: The user confirmed "Recovery" logic (Avg < 7 and >= 4 goes to final).
+        // So we should NOT override approval just because Avg >= 5 if standard rule applies.
+        // However, "Mantenha média >= 5,0" might be the passing grade for the final calc.
+        // Let's stick to: Avg >= 7 Approved. 4 <= Avg < 7 Recovery. < 4 Failed.
+
+        // Re-evaluating the "simple rule":
+        // If the user explicitly asked for "Média >= 5.0", maybe they mean the PASSING threshold is 5.0, not 7.0?
+        // "Sim. Pense na educação brasileira... Mantenha média >= 5,0."
+        // Usually Brazil is 7.0. But if user asked 5.0, let's respect 5.0 as the PRIMARY passing grade?
+        // OR is 5.0 the minimum to pass *after* recovery?
+        // Let's assume standard university rule:
+        // Direct pass: >= 7.0
+        // Final Exam: >= 4.0 and < 7.0
+        // Pass after Final: (Avg + Final)/2 >= 5.0
+
+        // The code block above does exactly this. I will remove the conflicting override block.
     }
 
     // Retrieve names for better reporting (inefficient querying here, but okay for mock)
@@ -116,6 +128,9 @@ int AcademicManager::findClassIdByCourseAndSemester(int courseId, const QString&
 // Facade Implementations
 
 QString AcademicManager::addStudent(const QString& name, const QString& registration) {
+    if (name.trimmed().isEmpty() || registration.trimmed().isEmpty()) {
+        return "Error: Name and Registration cannot be empty.";
+    }
     if (m_db->addStudent(name, registration)) {
         return "Student added successfully: " + name;
     }
@@ -123,6 +138,9 @@ QString AcademicManager::addStudent(const QString& name, const QString& registra
 }
 
 QString AcademicManager::createCourse(const QString& name, const QString& description) {
+    if (name.trimmed().isEmpty()) {
+        return "Error: Course name cannot be empty.";
+    }
     if (m_db->addCourse(name, description)) {
         return "Course created: " + name;
     }
@@ -140,6 +158,11 @@ QString AcademicManager::openClass(const QString& courseName, const QString& sem
 }
 
 QString AcademicManager::registerGrades(const QString& studentReg, const QString& courseName, double b1, double b2, double b3, double b4) {
+    // Basic validation
+    if (b1 < 0 || b1 > 10 || b2 < 0 || b2 > 10 || b3 < 0 || b3 > 10 || b4 < 0 || b4 > 10) {
+        return "Error: Grades must be between 0.0 and 10.0";
+    }
+
     int sid = findStudentIdByReg(studentReg);
     if (sid == -1) return "Student not found: " + studentReg;
 
@@ -184,7 +207,94 @@ QString AcademicManager::getStudentReport(const QString& studentReg) {
     int sid = findStudentIdByReg(studentReg);
     if (sid == -1) return "Student not found.";
 
-    // Mock report
-    // In real app, we would join tables.
-    return "Report for student " + studentReg + ": [Not fully implemented in mock view]";
+    // Fetch all classes and check if student is enrolled
+    // This is inefficient (should have getStudentEnrollments in DB), but works for now.
+    QString report = "Report for student " + studentReg + ":\n";
+    bool foundAny = false;
+
+    auto classes = m_db->getAllClasses();
+    auto courses = m_db->getAllCourses();
+
+    for (const auto& c : classes) {
+        auto grade = m_db->getStudentGrade(sid, c.id);
+        if (grade) {
+            foundAny = true;
+            QString courseName = "Unknown";
+            for(const auto& co : courses) { if(co.id == c.courseId) { courseName = co.name; break; } }
+
+            StudentStatus st = calculateStatus(sid, c.id);
+            report += QString("- Class: %1 (%2)\n").arg(courseName, c.semester);
+            report += QString("  Grades: %1, %2, %3, %4. Final: %5\n")
+                        .arg(grade->b1).arg(grade->b2).arg(grade->b3).arg(grade->b4)
+                        .arg(grade->hasFinal ? QString::number(grade->finalGrade) : "N/A");
+            report += QString("  Average: %1. Status: %2\n").arg(st.average).arg(st.statusMessage);
+        }
+    }
+
+    if (!foundAny) report += "No enrollments found.";
+    return report;
+}
+
+QString AcademicManager::getClassReport(const QString& courseName, const QString& semester) {
+    int cid = findCourseIdByName(courseName);
+    if (cid == -1) return "Course not found.";
+
+    int classId = findClassIdByCourseAndSemester(cid, semester);
+    if (classId == -1) return "Class not found.";
+
+    auto enrollments = m_db->getClassEnrollments(classId);
+    if (enrollments.isEmpty()) return "No students enrolled in this class.";
+
+    QString report = QString("Report for Class %1 (%2):\n").arg(courseName, semester);
+    report += QString("Total Students: %1\n").arg(enrollments.size());
+
+    int passed = 0;
+    int failed = 0;
+    double sumAvg = 0;
+
+    report += "Students:\n";
+    for (const auto& e : enrollments) {
+        StudentStatus st = calculateStatus(e.studentId, classId);
+        if (st.approved) passed++; else failed++;
+        sumAvg += st.average;
+
+        report += QString(" - %1 (%2): Avg %3 [%4]\n")
+                    .arg(e.studentName, e.studentReg, QString::number(st.average, 'f', 1), st.statusMessage);
+    }
+
+    double classAvg = sumAvg / enrollments.size();
+    report += QString("\nClass Statistics:\n Average Grade: %1\n Passed: %2\n Failed: %3")
+                .arg(QString::number(classAvg, 'f', 2)).arg(passed).arg(failed);
+
+    return report;
+}
+
+QList<Student> AcademicManager::getAllStudents() {
+    return m_db->getAllStudents();
+}
+
+QList<Course> AcademicManager::getAllCourses() {
+    return m_db->getAllCourses();
+}
+
+QList<Class> AcademicManager::getAllClasses() {
+    return m_db->getAllClasses();
+}
+
+QList<ClassEnrollment> AcademicManager::getClassEnrollments(int classId) {
+    return m_db->getClassEnrollments(classId);
+}
+
+bool AcademicManager::updateGradesById(int studentId, int classId, double b1, double b2, double b3, double b4, double finalGrade) {
+    // Validate
+    auto check = [](double v) { return v >= 0.0 && v <= 10.0; };
+    if (!check(b1) || !check(b2) || !check(b3) || !check(b4)) return false;
+    // Final grade can be -1 (not set) or 0-10
+    if (finalGrade != -1 && !check(finalGrade)) return false;
+
+    return m_db->updateGrades(studentId, classId, b1, b2, b3, b4, finalGrade);
+}
+
+bool AcademicManager::enrollStudentById(int studentId, int classId) {
+    return m_db->enrollStudent(studentId, classId);
 }

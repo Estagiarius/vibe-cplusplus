@@ -221,7 +221,19 @@
 			"UVLADIE3JM/moc_DatabaseManager.cpp",
 			null
 		],
-		[ "/app/src/MainWindow.h", "MU", "UVLADIE3JM/moc_MainWindow.cpp", null ]
+		[
+			"/app/src/GradebookView.h",
+			"MU",
+			"UVLADIE3JM/moc_GradebookView.cpp",
+			null
+		],
+		[ "/app/src/MainWindow.h", "MU", "UVLADIE3JM/moc_MainWindow.cpp", null ],
+		[
+			"/app/src/ManagementWidgets.h",
+			"MU",
+			"UVLADIE3JM/moc_ManagementWidgets.cpp",
+			null
+		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/app/build/AcademicManager_autogen/include",
@@ -244,7 +256,6 @@
 	],
 	"MOC_INCLUDES" :
 	[
-		"/app/include",
 		"/app/src",
 		"/usr/include/x86_64-linux-gnu/qt6/QtWidgets",
 		"/usr/include/x86_64-linux-gnu/qt6",
@@ -296,7 +307,9 @@
 		[ "/app/src/AIClient.cpp", "MU", null ],
 		[ "/app/src/AcademicManager.cpp", "MU", null ],
 		[ "/app/src/DatabaseManager.cpp", "MU", null ],
+		[ "/app/src/GradebookView.cpp", "MU", null ],
 		[ "/app/src/MainWindow.cpp", "MU", null ],
+		[ "/app/src/ManagementWidgets.cpp", "MU", null ],
 		[ "/app/src/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
