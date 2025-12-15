@@ -1,5 +1,7 @@
 #include "AcademicManager.h"
 #include <QDebug>
+#include <cmath>
+#include <QTextStream>
 
 AcademicManager::AcademicManager(std::shared_ptr<DatabaseManager> db, QObject *parent)
     : QObject(parent), m_db(db) {}
@@ -297,4 +299,53 @@ bool AcademicManager::updateGradesById(int studentId, int classId, double b1, do
 
 bool AcademicManager::enrollStudentById(int studentId, int classId) {
     return m_db->enrollStudent(studentId, classId);
+}
+
+/**
+ * @brief Analisa o desempenho de uma determinada classe.
+ *
+ * Calcula estatísticas como a média e o desvio padrão das notas da turma,
+ * identifica os alunos em recuperação e gera um relatório textual. Isso é usado pela IA
+ * para fornecer insights pedagógicos.
+ *
+ * @param classId O ID da classe a ser analisada.
+ * @return Uma string formatada com a análise de desempenho da classe.
+ */
+QString AcademicManager::analyzeClassPerformance(int classId) {
+    auto enrollments = m_db->getClassEnrollments(classId);
+    if (enrollments.isEmpty()) {
+        return "Error: No students enrolled in this class to analyze.";
+    }
+
+    QVector<double> averages;
+    QList<QString> recoveryStudents;
+    double sum = 0.0;
+
+    for (const auto& enrollment : enrollments) {
+        StudentStatus status = calculateStatus(enrollment.studentId, classId);
+        averages.push_back(status.average);
+        sum += status.average;
+        if (status.statusMessage.contains("Recuperação")) {
+            recoveryStudents.append(enrollment.studentName);
+        }
+    }
+
+    double mean = sum / averages.size();
+
+    double stddev_sum = 0.0;
+    for (double avg : averages) {
+        stddev_sum += (avg - mean) * (avg - mean);
+    }
+    double stddev = std::sqrt(stddev_sum / averages.size());
+
+    QString report;
+    QTextStream ss(&report);
+    ss << "Class Performance Analysis:\n"
+       << " - Average Grade: " << QString::number(mean, 'f', 2) << "\n"
+       << " - Standard Deviation: " << QString::number(stddev, 'f', 2) << "\n"
+       << " - Number of Students: " << enrollments.size() << "\n"
+       << " - Students in Recovery: " << (recoveryStudents.isEmpty() ? "None" : recoveryStudents.join(", ")) << "\n"
+       << "Interpretation: A high standard deviation suggests a large gap in performance between students. A low deviation means the class is more homogeneous.";
+
+    return report;
 }

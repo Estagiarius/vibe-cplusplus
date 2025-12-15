@@ -15,12 +15,8 @@ class AIClient : public QObject {
 public:
     explicit AIClient(std::shared_ptr<AcademicManager> manager, QObject *parent = nullptr);
 
-    void setBaseUrl(const QString& url); // e.g., http://localhost:11434/v1 for Ollama
-    void setApiKey(const QString& key);
-    void setModel(const QString& model);
-
-    // Main entry point for user chat
     void sendMessage(const QString& userMessage, std::function<void(QString)> callback);
+    void loadSettings();
 
 private:
     std::shared_ptr<AcademicManager> m_manager;

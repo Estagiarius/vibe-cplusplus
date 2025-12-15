@@ -2,27 +2,19 @@
 #include <QDebug>
 #include <QJsonValue>
 
+#include <QSettings>
+
 AIClient::AIClient(std::shared_ptr<AcademicManager> manager, QObject *parent)
     : QObject(parent), m_manager(manager) {
-
-    // Defaults for Ollama local
-    m_baseUrl = "http://localhost:11434/v1/chat/completions";
-    m_model = "llama3"; // Default, can be changed
-    m_apiKey = "ollama"; // Not usually needed for local ollama, but good for structure
-
+    loadSettings();
     setupTools();
 }
 
-void AIClient::setBaseUrl(const QString& url) {
-    m_baseUrl = url;
-}
-
-void AIClient::setApiKey(const QString& key) {
-    m_apiKey = key;
-}
-
-void AIClient::setModel(const QString& model) {
-    m_model = model;
+void AIClient::loadSettings() {
+    QSettings settings("MySoft", "AcademicManager");
+    m_baseUrl = settings.value("ai/base_url", "http://localhost:11434/v1/chat/completions").toString();
+    m_apiKey = settings.value("ai/api_key", "ollama").toString();
+    m_model = settings.value("ai/model", "llama3").toString();
 }
 
 void AIClient::setupTools() {
@@ -112,6 +104,21 @@ void AIClient::setupTools() {
 
     m_tools.append(getStudentReportTool);
     m_tools.append(getClassReportTool);
+
+    QJsonObject analyzeClassTool;
+    analyzeClassTool["type"] = "function";
+    QJsonObject acpFunc;
+    acpFunc["name"] = "analyze_class_performance";
+    acpFunc["description"] = "Provides a detailed pedagogical analysis of a class's performance, including average, standard deviation, and students needing attention.";
+    QJsonObject acpParams;
+    acpParams["type"] = "object";
+    QJsonObject acpProps;
+    acpProps["class_id"] = QJsonObject{{"type", "integer"}, {"description", "The ID of the class to analyze"}};
+    acpParams["properties"] = acpProps;
+    acpParams["required"] = QJsonArray{"class_id"};
+    acpFunc["parameters"] = acpParams;
+    analyzeClassTool["function"] = acpFunc;
+    m_tools.append(analyzeClassTool);
 }
 
 void AIClient::sendMessage(const QString& userMessage, std::function<void(QString)> callback) {
@@ -124,6 +131,10 @@ void AIClient::sendMessage(const QString& userMessage, std::function<void(QStrin
     payload["model"] = m_model;
 
     QJsonArray messages;
+     messages.append(QJsonObject{
+        {"role", "system"},
+        {"content", "You are a senior educational advisor. Your analysis should be insightful, proactive, and based on pedagogical principles. Identify at-risk students, suggest interventions, and highlight areas of excellence."}
+    });
     messages.append(QJsonObject{
         {"role", "user"},
         {"content", userMessage}
@@ -205,6 +216,10 @@ void AIClient::executeTool(const QString& name, const QJsonObject& args, std::fu
         result = m_manager->getClassReport(
             args["course_name"].toString(),
             args["semester"].toString()
+        );
+    } else if (name == "analyze_class_performance") {
+        result = m_manager->analyzeClassPerformance(
+            args["class_id"].toInt()
         );
     } else {
         result = "Unknown tool: " + name;
