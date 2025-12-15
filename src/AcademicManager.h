@@ -41,6 +41,18 @@ public:
     QString getStudentReport(const QString& studentReg);
     QString getClassReport(const QString& courseName, const QString& semester);
 
+    /**
+     * @brief Analisa o desempenho de uma turma, fornecendo insights pedagógicos.
+     *
+     * Esta função calcula a média da turma, o desvio padrão das notas,
+     * e identifica os alunos que estão em recuperação académica. Retorna uma
+     * string formatada com um resumo da análise, adequada para exibição ou uso pela IA.
+     *
+     * @param classId O ID da turma a ser analisada.
+     * @return Uma QString contendo o relatório de análise de desempenho.
+     */
+    QString analyzeClassPerformance(int classId);
+
     // Direct Data Access (For GUI Models)
     QList<Student> getAllStudents();
     QList<Course> getAllCourses();

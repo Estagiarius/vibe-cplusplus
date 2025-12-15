@@ -4,6 +4,10 @@
 #include <QMessageBox>
 #include <QFormLayout>
 #include <QGroupBox>
+#include <QMenuBar>
+#include <QMenu>
+#include <QClipboard>
+#include <QApplication>
 
 MainWindow::MainWindow(std::shared_ptr<AcademicManager> manager, std::shared_ptr<AIClient> aiClient, QWidget *parent)
     : QMainWindow(parent), m_manager(manager), m_aiClient(aiClient) {
@@ -16,6 +20,13 @@ MainWindow::~MainWindow() {}
 void MainWindow::setupUi() {
     setWindowTitle("Academic Management System - AI Powered");
     resize(1024, 768);
+
+    // Menu Bar
+    QMenu *fileMenu = menuBar()->addMenu("&File");
+    QAction *settingsAction = new QAction("&Settings", this);
+    connect(settingsAction, &QAction::triggered, this, &MainWindow::onSettings);
+    fileMenu->addAction(settingsAction);
+
 
     QWidget *centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
@@ -62,13 +73,33 @@ void MainWindow::setupManagementTab() {
     m_mainTabs->addTab(mgmtTabs, "Management");
 }
 
+/**
+ * @brief Configura a interface do usuário para a guia de bate-papo do Assistente de IA.
+ *
+ * Esta função cria a exibição do bate-papo, o campo de entrada, o botão de envio,
+ * o indicador "digitando..." e o botão para copiar a resposta.
+ */
 void MainWindow::setupChatTab() {
     QWidget *tab = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout(tab);
 
     m_chatDisplay = new QTextEdit();
     m_chatDisplay->setReadOnly(true);
-    layout->addWidget(m_chatDisplay);
+
+    m_copyButton = new QPushButton("Copy Last Response");
+    m_copyButton->setEnabled(false); // Disabled until first AI response
+
+    QHBoxLayout *displayLayout = new QHBoxLayout();
+    displayLayout->addWidget(m_chatDisplay);
+    QVBoxLayout* displayButtons = new QVBoxLayout();
+    displayButtons->addWidget(m_copyButton);
+    displayButtons->addStretch();
+    displayLayout->addLayout(displayButtons);
+    layout->addLayout(displayLayout);
+
+    m_typingIndicator = new QLabel("AI is typing...");
+    m_typingIndicator->setVisible(false);
+    layout->addWidget(m_typingIndicator);
 
     QHBoxLayout *inputLayout = new QHBoxLayout();
     m_chatInput = new QLineEdit();
@@ -81,6 +112,8 @@ void MainWindow::setupChatTab() {
 
     connect(m_sendBtn, &QPushButton::clicked, this, &MainWindow::onSendChat);
     connect(m_chatInput, &QLineEdit::returnPressed, this, &MainWindow::onSendChat);
+    connect(m_copyButton, &QPushButton::clicked, this, &MainWindow::onCopyResponse);
+
 
     m_mainTabs->addTab(tab, "AI Assistant");
 }
@@ -90,6 +123,13 @@ void MainWindow::onTabChanged(int index) {
     // Not strictly necessary if the sub-tab handler handles it.
 }
 
+/**
+ * @brief Lida com o envio de uma mensagem de chat.
+ *
+ * Este slot é acionado quando o usuário clica no botão de envio ou pressiona Enter.
+ * Ele pega a mensagem do usuário, a exibe e a envia para o AIClient.
+ * Também gerencia o estado da interface do usuário, como mostrar o indicador "digitando...".
+ */
 void MainWindow::onSendChat() {
     QString msg = m_chatInput->text().trimmed();
     if (msg.isEmpty()) return;
@@ -98,11 +138,16 @@ void MainWindow::onSendChat() {
     m_chatInput->clear();
     m_chatInput->setEnabled(false);
     m_sendBtn->setEnabled(false);
+    m_typingIndicator->setVisible(true);
+    m_copyButton->setEnabled(false);
+
 
     m_aiClient->sendMessage(msg, [this](QString response) {
         appendChatMessage("AI", response);
         m_chatInput->setEnabled(true);
         m_sendBtn->setEnabled(true);
+        m_typingIndicator->setVisible(false);
+        m_copyButton->setEnabled(true);
         m_chatInput->setFocus();
 
         // After AI action, refresh views just in case
@@ -114,6 +159,39 @@ void MainWindow::onSendChat() {
     });
 }
 
+/**
+ * @brief Anexa uma mensagem ao visor de chat.
+ *
+ * @param sender O remetente da mensagem.
+ * @param message O conteúdo da mensagem.
+ */
 void MainWindow::appendChatMessage(const QString& sender, const QString& message) {
     m_chatDisplay->append(QString("<b>%1:</b> %2").arg(sender, message));
+    if (sender == "AI") {
+        m_lastResponse = message;
+    }
+}
+
+/**
+ * @brief Copia a última resposta da IA para a área de transferência.
+ */
+void MainWindow::onCopyResponse() {
+    QApplication::clipboard()->setText(m_lastResponse);
+    QMessageBox::information(this, "Copied", "AI response copied to clipboard.");
+}
+
+/**
+ * @brief Abre o diálogo de configurações.
+ *
+ * Este slot está conectado à ação de menu "Configurações". Ele abre o
+ * SettingsDialog e, se o usuário salvar as configurações, ele as recarrega
+ * no AIClient.
+ */
+void MainWindow::onSettings() {
+    SettingsDialog dialog(this);
+    if (dialog.exec() == QDialog::Accepted) {
+        // Reload settings in AIClient
+        m_aiClient->loadSettings();
+        QMessageBox::information(this, "Settings Updated", "AI client settings have been reloaded.");
+    }
 }
