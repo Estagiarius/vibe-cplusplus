@@ -477,6 +477,7 @@
  /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlexports.h
  /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlglobal.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDateEdit
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHeaderView
@@ -498,6 +499,7 @@
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdatetimeedit.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h

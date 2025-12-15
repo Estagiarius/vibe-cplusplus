@@ -44,6 +44,12 @@ struct ClassEnrollment {
     Grade grade;
 };
 
+struct AttendanceRecord {
+    int studentId;
+    QString date; // YYYY-MM-DD
+    bool present;
+};
+
 class DatabaseManager : public QObject {
     Q_OBJECT
 public:
@@ -70,6 +76,10 @@ public:
     bool updateGrades(int studentId, int classId, double b1, double b2, double b3, double b4, double finalGrade = -1);
     std::optional<Grade> getStudentGrade(int studentId, int classId);
     QList<ClassEnrollment> getClassEnrollments(int classId);
+
+    // Attendance
+    bool addOrUpdateAttendance(int studentId, int classId, const QString& date, bool present);
+    QList<AttendanceRecord> getAttendance(int classId, const QString& date);
 
     QSqlDatabase getDb() const { return m_db; }
 
