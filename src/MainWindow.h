@@ -23,20 +23,20 @@ class ClassView;
 class GradebookView;
 
 /**
- * @brief The MainWindow class is the main window of the application.
+ * @brief A classe MainWindow é a janela principal da aplicação.
  *
- * It contains the main tab widget with the management and AI chat interfaces,
- * as well as the menu bar for accessing settings.
+ * Contém o widget principal de separadores com as interfaces de gestão e de conversação com IA,
+ * bem como a barra de menus para aceder às definições.
  */
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
     /**
-     * @brief Constructs a new MainWindow.
-     * @param manager A shared pointer to the AcademicManager for business logic.
-     * @param aiClient A shared pointer to the AIClient for AI interactions.
-     * @param parent The parent widget.
+     * @brief Constrói uma nova MainWindow.
+     * @param manager Um ponteiro partilhado para o AcademicManager para a lógica de negócio.
+     * @param aiClient Um ponteiro partilhado para o AIClient para interacções de IA.
+     * @param parent O widget pai.
      */
     MainWindow(std::shared_ptr<AcademicManager> manager, std::shared_ptr<AIClient> aiClient, QWidget *parent = nullptr);
     ~MainWindow();
@@ -44,24 +44,24 @@ public:
 private slots:
     // AI Chat
     /**
-     * @brief Called when the user sends a message in the chat.
+     * @brief Chamado quando o usuário envia uma mensagem no chat.
      */
     void onSendChat();
 
     /**
-     * @brief Appends a message to the chat display.
-     * @param sender The sender of the message (e.g., "User" or "AI").
-     * @param message The message content.
+     * @brief Anexa uma mensagem à exibição do chat.
+     * @param sender O remetente da mensagem (por exemplo, "Usuário" ou "IA").
+     * @param message O conteúdo da mensagem.
      */
     void appendChatMessage(const QString& sender, const QString& message);
 
     /**
-     * @brief Opens the AI settings dialog.
+     * @brief Abre a caixa de diálogo de configurações da IA.
      */
     void onSettings();
 
     /**
-     * @brief Copies the last AI response to the clipboard.
+     * @brief Copia a última resposta da IA para a área de transferência.
      */
     void onCopyResponse();
 
@@ -90,17 +90,17 @@ private:
     QString m_lastResponse;
 
     /**
-     * @brief Sets up the main UI of the window.
+     * @brief Configura a interface principal da janela.
      */
     void setupUi();
 
     /**
-     * @brief Sets up the management tab with all the management views.
+     * @brief Configura a aba de gerenciamento com todas as visualizações de gerenciamento.
      */
     void setupManagementTab();
 
     /**
-     * @brief Sets up the AI assistant chat tab.
+     * @brief Configura a aba de chat do assistente de IA.
      */
     void setupChatTab();
 };

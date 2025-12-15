@@ -74,10 +74,10 @@ void MainWindow::setupManagementTab() {
 }
 
 /**
- * @brief Sets up the UI for the AI Assistant chat tab.
+ * @brief Configura a interface do usuário para a guia de bate-papo do Assistente de IA.
  *
- * This function creates the chat display, input field, send button,
- * "typing" indicator, and the copy response button.
+ * Esta função cria a exibição do bate-papo, o campo de entrada, o botão de envio,
+ * o indicador "digitando..." e o botão para copiar a resposta.
  */
 void MainWindow::setupChatTab() {
     QWidget *tab = new QWidget();
@@ -124,11 +124,11 @@ void MainWindow::onTabChanged(int index) {
 }
 
 /**
- * @brief Handles sending a chat message.
+ * @brief Lida com o envio de uma mensagem de chat.
  *
- * This slot is triggered when the user clicks the send button or presses Enter.
- * It takes the user's message, displays it, and sends it to the AIClient.
- * It also manages the state of the UI, such as showing the "typing" indicator.
+ * Este slot é acionado quando o usuário clica no botão de envio ou pressiona Enter.
+ * Ele pega a mensagem do usuário, a exibe e a envia para o AIClient.
+ * Também gerencia o estado da interface do usuário, como mostrar o indicador "digitando...".
  */
 void MainWindow::onSendChat() {
     QString msg = m_chatInput->text().trimmed();
@@ -160,10 +160,10 @@ void MainWindow::onSendChat() {
 }
 
 /**
- * @brief Appends a message to the chat display.
+ * @brief Anexa uma mensagem ao visor de chat.
  *
- * @param sender The sender of the message.
- * @param message The content of the message.
+ * @param sender O remetente da mensagem.
+ * @param message O conteúdo da mensagem.
  */
 void MainWindow::appendChatMessage(const QString& sender, const QString& message) {
     m_chatDisplay->append(QString("<b>%1:</b> %2").arg(sender, message));
@@ -173,7 +173,7 @@ void MainWindow::appendChatMessage(const QString& sender, const QString& message
 }
 
 /**
- * @brief Copies the last AI response to the clipboard.
+ * @brief Copia a última resposta da IA para a área de transferência.
  */
 void MainWindow::onCopyResponse() {
     QApplication::clipboard()->setText(m_lastResponse);
@@ -181,11 +181,11 @@ void MainWindow::onCopyResponse() {
 }
 
 /**
- * @brief Opens the settings dialog.
+ * @brief Abre o diálogo de configurações.
  *
- * This slot is connected to the "Settings" menu action. It opens the
- * SettingsDialog, and if the user saves the settings, it reloads them
- * in the AIClient.
+ * Este slot está conectado à ação de menu "Configurações". Ele abre o
+ * SettingsDialog e, se o usuário salvar as configurações, ele as recarrega
+ * no AIClient.
  */
 void MainWindow::onSettings() {
     SettingsDialog dialog(this);

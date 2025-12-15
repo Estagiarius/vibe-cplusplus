@@ -9,10 +9,10 @@
 #include <QMessageBox>
 
 /**
- * @brief Constructs a new SettingsDialog.
+ * @brief Constrói um novo SettingsDialog.
  *
- * Initializes the UI and loads the last saved settings.
- * @param parent The parent widget.
+ * Inicializa a UI e carrega as últimas configurações salvas.
+ * @param parent O widget pai.
  */
 SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     setupUi();
@@ -20,9 +20,9 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
 }
 
 /**
- * @brief Sets up the user interface of the dialog.
+ * @brief Configura a interface do usuário da caixa de diálogo.
  *
- * Creates and arranges all the widgets for the settings dialog.
+ * Cria e organiza todos os widgets para a caixa de diálogo de configurações.
  */
 void SettingsDialog::setupUi() {
     setWindowTitle("AI Settings");
@@ -64,11 +64,11 @@ void SettingsDialog::setupUi() {
 }
 
 /**
- * @brief Handles the change of the AI provider.
+ * @brief Lida com a alteração do provedor de IA.
  *
- * When the provider is changed, this slot updates the UI with default values
- * for the selected provider. For example, it sets a default URL for Ollama.
- * @param index The new index of the provider combo box.
+ * Quando o provedor é alterado, este slot atualiza a UI com valores padrão
+ * para o provedor selecionado. Por exemplo, ele define uma URL padrão para o Ollama.
+ * @param index O novo índice da caixa de combinação de provedores.
  */
 void SettingsDialog::onProviderChanged(int index) {
     QString provider = m_providerCombo->itemData(index).toString();
@@ -84,9 +84,9 @@ void SettingsDialog::onProviderChanged(int index) {
 }
 
 /**
- * @brief Saves the settings to persistent storage.
+ * @brief Salva as configurações no armazenamento persistente.
  *
- * Uses QSettings to save the provider, URL, API key, and model name.
+ * Usa o QSettings para salvar o provedor, URL, chave de API e nome do modelo.
  */
 void SettingsDialog::saveSettings() {
     QSettings settings("MySoft", "AcademicManager");
@@ -101,10 +101,10 @@ void SettingsDialog::saveSettings() {
 }
 
 /**
- * @brief Loads settings from persistent storage.
+ * @brief Carrega as configurações do armazenamento persistente.
  *
- * Uses QSettings to load the provider, URL, API key, and model name,
- * and populates the dialog fields with these values.
+ * Usa o QSettings para carregar o provedor, a URL, a chave de API e o nome do modelo,
+ * e preenche os campos da caixa de diálogo com esses valores.
  */
 void SettingsDialog::loadSettings() {
     QSettings settings("MySoft", "AcademicManager");

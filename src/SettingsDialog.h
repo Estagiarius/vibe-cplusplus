@@ -9,38 +9,38 @@ class QLineEdit;
 class QPushButton;
 
 /**
- * @brief The SettingsDialog class provides a dialog for configuring AI provider settings.
+ * @brief A classe SettingsDialog fornece uma caixa de diálogo para configurar as definições do provedor de IA.
  *
- * This dialog allows the user to select an AI provider (e.g., Ollama, OpenAI),
- * and set the corresponding endpoint URL, API key, and model name.
- * The settings are persisted using QSettings.
+ * Esta caixa de diálogo permite ao utilizador selecionar um provedor de IA (por exemplo, Ollama, OpenAI),
+ * e definir o URL do ponto de extremidade, a chave da API e o nome do modelo correspondentes.
+ * As definições são mantidas através de QSettings.
  */
 class SettingsDialog : public QDialog {
     Q_OBJECT
 
 public:
     /**
-     * @brief Constructs a new SettingsDialog.
-     * @param parent The parent widget.
+     * @brief Constrói um novo SettingsDialog.
+     * @param parent O widget pai.
      */
     explicit SettingsDialog(QWidget *parent = nullptr);
 
 private slots:
     /**
-     * @brief Handles the change of the AI provider in the combo box.
+     * @brief Lida com a alteração do provedor de IA na caixa de combinação.
      *
-     * Updates the URL and API key fields with default values for the selected provider.
-     * @param index The index of the selected item in the combo box.
+     * Atualiza os campos de URL e chave de API com valores padrão para o provedor selecionado.
+     * @param index O índice do item selecionado na caixa de combinação.
      */
     void onProviderChanged(int index);
 
     /**
-     * @brief Saves the current settings to QSettings.
+     * @brief Salva as configurações atuais no QSettings.
      */
     void saveSettings();
 
     /**
-     * @brief Loads the settings from QSettings and populates the dialog fields.
+     * @brief Carrega as configurações do QSettings e preenche os campos da caixa de diálogo.
      */
     void loadSettings();
 
@@ -53,7 +53,7 @@ private:
     QPushButton *m_cancelButton;
 
     /**
-     * @brief Sets up the user interface of the dialog.
+     * @brief Configura a interface do usuário da caixa de diálogo.
      */
     void setupUi();
 };
