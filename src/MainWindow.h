@@ -22,18 +22,47 @@ class CourseView;
 class ClassView;
 class GradebookView;
 
+/**
+ * @brief The MainWindow class is the main window of the application.
+ *
+ * It contains the main tab widget with the management and AI chat interfaces,
+ * as well as the menu bar for accessing settings.
+ */
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
+    /**
+     * @brief Constructs a new MainWindow.
+     * @param manager A shared pointer to the AcademicManager for business logic.
+     * @param aiClient A shared pointer to the AIClient for AI interactions.
+     * @param parent The parent widget.
+     */
     MainWindow(std::shared_ptr<AcademicManager> manager, std::shared_ptr<AIClient> aiClient, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
     // AI Chat
+    /**
+     * @brief Called when the user sends a message in the chat.
+     */
     void onSendChat();
+
+    /**
+     * @brief Appends a message to the chat display.
+     * @param sender The sender of the message (e.g., "User" or "AI").
+     * @param message The message content.
+     */
     void appendChatMessage(const QString& sender, const QString& message);
+
+    /**
+     * @brief Opens the AI settings dialog.
+     */
     void onSettings();
+
+    /**
+     * @brief Copies the last AI response to the clipboard.
+     */
     void onCopyResponse();
 
     // Sync slots (refresh views when tabs change)
@@ -60,8 +89,19 @@ private:
 
     QString m_lastResponse;
 
+    /**
+     * @brief Sets up the main UI of the window.
+     */
     void setupUi();
+
+    /**
+     * @brief Sets up the management tab with all the management views.
+     */
     void setupManagementTab();
+
+    /**
+     * @brief Sets up the AI assistant chat tab.
+     */
     void setupChatTab();
 };
 

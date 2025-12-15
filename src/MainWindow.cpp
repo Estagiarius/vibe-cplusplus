@@ -73,6 +73,12 @@ void MainWindow::setupManagementTab() {
     m_mainTabs->addTab(mgmtTabs, "Management");
 }
 
+/**
+ * @brief Sets up the UI for the AI Assistant chat tab.
+ *
+ * This function creates the chat display, input field, send button,
+ * "typing" indicator, and the copy response button.
+ */
 void MainWindow::setupChatTab() {
     QWidget *tab = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout(tab);
@@ -117,6 +123,13 @@ void MainWindow::onTabChanged(int index) {
     // Not strictly necessary if the sub-tab handler handles it.
 }
 
+/**
+ * @brief Handles sending a chat message.
+ *
+ * This slot is triggered when the user clicks the send button or presses Enter.
+ * It takes the user's message, displays it, and sends it to the AIClient.
+ * It also manages the state of the UI, such as showing the "typing" indicator.
+ */
 void MainWindow::onSendChat() {
     QString msg = m_chatInput->text().trimmed();
     if (msg.isEmpty()) return;
@@ -146,6 +159,12 @@ void MainWindow::onSendChat() {
     });
 }
 
+/**
+ * @brief Appends a message to the chat display.
+ *
+ * @param sender The sender of the message.
+ * @param message The content of the message.
+ */
 void MainWindow::appendChatMessage(const QString& sender, const QString& message) {
     m_chatDisplay->append(QString("<b>%1:</b> %2").arg(sender, message));
     if (sender == "AI") {
@@ -153,11 +172,21 @@ void MainWindow::appendChatMessage(const QString& sender, const QString& message
     }
 }
 
+/**
+ * @brief Copies the last AI response to the clipboard.
+ */
 void MainWindow::onCopyResponse() {
     QApplication::clipboard()->setText(m_lastResponse);
     QMessageBox::information(this, "Copied", "AI response copied to clipboard.");
 }
 
+/**
+ * @brief Opens the settings dialog.
+ *
+ * This slot is connected to the "Settings" menu action. It opens the
+ * SettingsDialog, and if the user saves the settings, it reloads them
+ * in the AIClient.
+ */
 void MainWindow::onSettings() {
     SettingsDialog dialog(this);
     if (dialog.exec() == QDialog::Accepted) {

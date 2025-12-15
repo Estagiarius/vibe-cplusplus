@@ -301,6 +301,16 @@ bool AcademicManager::enrollStudentById(int studentId, int classId) {
     return m_db->enrollStudent(studentId, classId);
 }
 
+/**
+ * @brief Analyzes the performance of a given class.
+ *
+ * Calculates statistics such as the mean and standard deviation of grades for the class,
+ * identifies students in recovery, and generates a textual report. This is used by the AI
+ * to provide pedagogical insights.
+ *
+ * @param classId The ID of the class to be analyzed.
+ * @return A formatted string with the class performance analysis.
+ */
 QString AcademicManager::analyzeClassPerformance(int classId) {
     auto enrollments = m_db->getClassEnrollments(classId);
     if (enrollments.isEmpty()) {

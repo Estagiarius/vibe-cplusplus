@@ -8,11 +8,22 @@
 #include <QGroupBox>
 #include <QMessageBox>
 
+/**
+ * @brief Constructs a new SettingsDialog.
+ *
+ * Initializes the UI and loads the last saved settings.
+ * @param parent The parent widget.
+ */
 SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     setupUi();
     loadSettings();
 }
 
+/**
+ * @brief Sets up the user interface of the dialog.
+ *
+ * Creates and arranges all the widgets for the settings dialog.
+ */
 void SettingsDialog::setupUi() {
     setWindowTitle("AI Settings");
 
@@ -52,6 +63,13 @@ void SettingsDialog::setupUi() {
     connect(m_cancelButton, &QPushButton::clicked, this, &SettingsDialog::reject);
 }
 
+/**
+ * @brief Handles the change of the AI provider.
+ *
+ * When the provider is changed, this slot updates the UI with default values
+ * for the selected provider. For example, it sets a default URL for Ollama.
+ * @param index The new index of the provider combo box.
+ */
 void SettingsDialog::onProviderChanged(int index) {
     QString provider = m_providerCombo->itemData(index).toString();
     if (provider == "ollama") {
@@ -65,6 +83,11 @@ void SettingsDialog::onProviderChanged(int index) {
     }
 }
 
+/**
+ * @brief Saves the settings to persistent storage.
+ *
+ * Uses QSettings to save the provider, URL, API key, and model name.
+ */
 void SettingsDialog::saveSettings() {
     QSettings settings("MySoft", "AcademicManager");
     settings.setValue("ai/provider", m_providerCombo->currentData().toString());
@@ -77,6 +100,12 @@ void SettingsDialog::saveSettings() {
     accept();
 }
 
+/**
+ * @brief Loads settings from persistent storage.
+ *
+ * Uses QSettings to load the provider, URL, API key, and model name,
+ * and populates the dialog fields with these values.
+ */
 void SettingsDialog::loadSettings() {
     QSettings settings("MySoft", "AcademicManager");
     QString provider = settings.value("ai/provider", "ollama").toString();
