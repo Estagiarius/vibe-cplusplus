@@ -5,6 +5,9 @@
 #include <memory>
 #include "DatabaseManager.h"
 
+/**
+ * @brief Estrutura para armazenar o status acadêmico de um aluno em uma turma.
+ */
 struct StudentStatus {
     QString studentName;
     QString className;
@@ -13,6 +16,9 @@ struct StudentStatus {
     QString statusMessage;
 };
 
+/**
+ * @brief Gerencia a lógica de negócios e atua como uma fachada para a interface do usuário e o cliente de IA.
+ */
 class AcademicManager : public QObject {
     Q_OBJECT
 public:

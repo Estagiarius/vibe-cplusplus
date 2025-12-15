@@ -4,16 +4,6 @@
 #include "EditCourseDialog.h"
 #include "EditClassDialog.h"
 
-// Helper to access DB directly or via manager. Manager has Facade, but for models we might need raw lists.
-// Since AcademicManager wraps DatabaseManager but doesn't expose list getters yet, I should add them to AcademicManager or access DB via manager->db?
-// AcademicManager.h doesn't expose m_db publically.
-// I will add getters to AcademicManager or friend class.
-// Better practice: Add getters to AcademicManager. I'll modify AcademicManager.h in next step or use what I have.
-// Wait, `AcademicManager` currently only has facade for Strings.
-// I should update `AcademicManager` to expose lists OR use `DatabaseManager` shared pointer if I pass it or expose it.
-// MainWindow has `std::shared_ptr<AcademicManager>`. `AcademicManager` has `m_db`.
-// Let's modify AcademicManager to expose getters for Lists.
-
 // ======================= STUDENT VIEW =======================
 #include <QMenu>
 
@@ -105,7 +95,10 @@ void StudentView::onEdit() {
         return;
     }
 
-    int row = selected.first().row();
+    QModelIndex proxyIndex = selected.first();
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(proxyIndex);
+    int row = sourceIndex.row();
+
     int studentId = m_model->item(row, 0)->text().toInt();
     QString currentName = m_model->item(row, 1)->text();
     QString currentReg = m_model->item(row, 2)->text();
@@ -125,7 +118,10 @@ void StudentView::onDelete() {
         return;
     }
 
-    int row = selected.first().row();
+    QModelIndex proxyIndex = selected.first();
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(proxyIndex);
+    int row = sourceIndex.row();
+
     int studentId = m_model->item(row, 0)->text().toInt();
     QString studentName = m_model->item(row, 1)->text();
 
@@ -233,7 +229,10 @@ void CourseView::onEdit() {
         return;
     }
 
-    int row = selected.first().row();
+    QModelIndex proxyIndex = selected.first();
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(proxyIndex);
+    int row = sourceIndex.row();
+
     int courseId = m_model->item(row, 0)->text().toInt();
     QString currentName = m_model->item(row, 1)->text();
     QString currentDesc = m_model->item(row, 2)->text();
@@ -253,7 +252,10 @@ void CourseView::onDelete() {
         return;
     }
 
-    int row = selected.first().row();
+    QModelIndex proxyIndex = selected.first();
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(proxyIndex);
+    int row = sourceIndex.row();
+
     int courseId = m_model->item(row, 0)->text().toInt();
     QString courseName = m_model->item(row, 1)->text();
 

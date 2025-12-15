@@ -102,6 +102,11 @@ StudentStatus AcademicManager::calculateStatus(int studentId, int classId) {
 }
 
 // Helpers
+/**
+ * @brief Encontra o ID de um curso pelo nome.
+ * @param name Nome do curso.
+ * @return O ID do curso ou -1 se não for encontrado.
+ */
 int AcademicManager::findCourseIdByName(const QString& name) {
     auto courses = m_db->getAllCourses();
     for (const auto& c : courses) {
@@ -110,12 +115,23 @@ int AcademicManager::findCourseIdByName(const QString& name) {
     return -1;
 }
 
+/**
+ * @brief Encontra o ID de um aluno pela matrícula.
+ * @param reg Matrícula do aluno.
+ * @return O ID do aluno ou -1 se não for encontrado.
+ */
 int AcademicManager::findStudentIdByReg(const QString& reg) {
     auto s = m_db->getStudentByRegistration(reg);
     if (s) return s->id;
     return -1;
 }
 
+/**
+ * @brief Encontra o ID de uma turma pelo curso e semestre.
+ * @param courseId ID do curso.
+ * @param semester Semestre da turma.
+ * @return O ID da turma ou -1 se não for encontrada.
+ */
 int AcademicManager::findClassIdByCourseAndSemester(int courseId, const QString& semester) {
     auto classes = m_db->getAllClasses();
     for (const auto& c : classes) {
@@ -127,6 +143,12 @@ int AcademicManager::findClassIdByCourseAndSemester(int courseId, const QString&
 
 // Facade Implementations
 
+/**
+ * @brief Adiciona um novo aluno.
+ * @param name Nome do aluno.
+ * @param registration Matrícula do aluno.
+ * @return Mensagem de sucesso ou erro.
+ */
 QString AcademicManager::addStudent(const QString& name, const QString& registration) {
     if (name.trimmed().isEmpty() || registration.trimmed().isEmpty()) {
         return "Error: Name and Registration cannot be empty.";
@@ -140,6 +162,13 @@ QString AcademicManager::addStudent(const QString& name, const QString& registra
     return "Failed to add student.";
 }
 
+/**
+ * @brief Atualiza os dados de um aluno existente.
+ * @param studentId ID do aluno.
+ * @param name Novo nome do aluno.
+ * @param registration Nova matrícula do aluno.
+ * @return Mensagem de sucesso ou erro.
+ */
 QString AcademicManager::updateStudent(int studentId, const QString& name, const QString& registration) {
     if (name.trimmed().isEmpty() || registration.trimmed().isEmpty()) {
         return "Error: Name and Registration cannot be empty.";
@@ -150,6 +179,11 @@ QString AcademicManager::updateStudent(int studentId, const QString& name, const
     return "Failed to update student.";
 }
 
+/**
+ * @brief Exclui um aluno.
+ * @param studentId ID do aluno.
+ * @return Mensagem de sucesso ou erro.
+ */
 QString AcademicManager::deleteStudent(int studentId) {
     // Check for enrollments before deleting
     auto classes = m_db->getAllClasses();
@@ -165,6 +199,12 @@ QString AcademicManager::deleteStudent(int studentId) {
     return "Failed to delete student.";
 }
 
+/**
+ * @brief Cria um novo curso.
+ * @param name Nome do curso.
+ * @param description Descrição do curso.
+ * @return Mensagem de sucesso ou erro.
+ */
 QString AcademicManager::createCourse(const QString& name, const QString& description) {
     if (name.trimmed().isEmpty()) {
         return "Error: Course name cannot be empty.";
@@ -175,6 +215,13 @@ QString AcademicManager::createCourse(const QString& name, const QString& descri
     return "Failed to create course.";
 }
 
+/**
+ * @brief Atualiza os dados de um curso existente.
+ * @param courseId ID do curso.
+ * @param name Novo nome do curso.
+ * @param description Nova descrição do curso.
+ * @return Mensagem de sucesso ou erro.
+ */
 QString AcademicManager::updateCourse(int courseId, const QString& name, const QString& description) {
     if (name.trimmed().isEmpty()) {
         return "Error: Course name cannot be empty.";
@@ -185,6 +232,11 @@ QString AcademicManager::updateCourse(int courseId, const QString& name, const Q
     return "Failed to update course.";
 }
 
+/**
+ * @brief Exclui um curso.
+ * @param courseId ID do curso.
+ * @return Mensagem de sucesso ou erro.
+ */
 QString AcademicManager::deleteCourse(int courseId) {
     // Check for classes associated with this course
     auto classes = m_db->getAllClasses();
@@ -200,6 +252,13 @@ QString AcademicManager::deleteCourse(int courseId) {
     return "Failed to delete course.";
 }
 
+/**
+ * @brief Atualiza os dados de uma turma existente.
+ * @param classId ID da turma.
+ * @param courseId Novo ID do curso.
+ * @param semester Novo semestre da turma.
+ * @return Mensagem de sucesso ou erro.
+ */
 QString AcademicManager::updateClass(int classId, int courseId, const QString& semester) {
     if (semester.trimmed().isEmpty()) {
         return "Error: Semester cannot be empty.";
@@ -210,6 +269,11 @@ QString AcademicManager::updateClass(int classId, int courseId, const QString& s
     return "Failed to update class.";
 }
 
+/**
+ * @brief Exclui uma turma.
+ * @param classId ID da turma.
+ * @return Mensagem de sucesso ou erro.
+ */
 QString AcademicManager::deleteClass(int classId) {
     // Check for enrollments in this class
     auto enrollments = m_db->getClassEnrollments(classId);
@@ -223,6 +287,12 @@ QString AcademicManager::deleteClass(int classId) {
     return "Failed to delete class.";
 }
 
+/**
+ * @brief Abre uma nova turma para um curso em um semestre.
+ * @param courseName Nome do curso.
+ * @param semester Semestre da turma.
+ * @return Mensagem de sucesso ou erro.
+ */
 QString AcademicManager::openClass(const QString& courseName, const QString& semester) {
     int cid = findCourseIdByName(courseName);
     if (cid == -1) return "Course not found: " + courseName;

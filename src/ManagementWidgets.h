@@ -19,6 +19,9 @@
 // Base class for shared styling or logic if needed, but for now standalone is fine.
 
 // ======================= STUDENT VIEW =======================
+/**
+ * @brief Widget para gerenciar (visualizar, adicionar, editar, excluir) alunos.
+ */
 class StudentView : public QWidget {
     Q_OBJECT
 public:
@@ -44,6 +47,9 @@ private:
 };
 
 // ======================= COURSE VIEW =======================
+/**
+ * @brief Widget para gerenciar (visualizar, adicionar, editar, excluir) cursos.
+ */
 class CourseView : public QWidget {
     Q_OBJECT
 public:
@@ -69,6 +75,9 @@ private:
 };
 
 // ======================= CLASS VIEW =======================
+/**
+ * @brief Widget para gerenciar (visualizar, adicionar, editar, excluir) turmas.
+ */
 class ClassView : public QWidget {
     Q_OBJECT
 public:
