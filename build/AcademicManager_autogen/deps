@@ -15,6 +15,8 @@ AcademicManager_autogen/timestamp: \
 	/app/src/MainWindow.h \
 	/app/src/ManagementWidgets.cpp \
 	/app/src/ManagementWidgets.h \
+	/app/src/SettingsDialog.cpp \
+	/app/src/SettingsDialog.h \
 	/app/src/main.cpp \
 	/usr/include/alloca.h \
 	/usr/include/asm-generic/errno-base.h \
@@ -473,6 +475,7 @@ AcademicManager_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlexports.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlglobal.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
+	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHeaderView \
@@ -494,6 +497,7 @@ AcademicManager_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h \

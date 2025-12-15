@@ -1,9 +1,13 @@
 #include "MainWindow.h"
 #include "ManagementWidgets.h"
 #include "GradebookView.h"
+#include "SettingsDialog.h"
 #include <QMessageBox>
 #include <QFormLayout>
 #include <QGroupBox>
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
 
 MainWindow::MainWindow(std::shared_ptr<AcademicManager> manager, std::shared_ptr<AIClient> aiClient, QWidget *parent)
     : QMainWindow(parent), m_manager(manager), m_aiClient(aiClient) {
@@ -27,7 +31,20 @@ void MainWindow::setupUi() {
     setupManagementTab();
     setupChatTab();
 
+    // Menu Bar
+    QMenuBar *menuBar = new QMenuBar(this);
+    setMenuBar(menuBar);
+    QMenu *fileMenu = menuBar->addMenu("File");
+    QAction *settingsAction = new QAction("Settings", this);
+    connect(settingsAction, &QAction::triggered, this, &MainWindow::onSettings);
+    fileMenu->addAction(settingsAction);
+
     connect(m_mainTabs, &QTabWidget::currentChanged, this, &MainWindow::onTabChanged);
+}
+
+void MainWindow::onSettings() {
+    SettingsDialog dialog(this);
+    dialog.exec();
 }
 
 void MainWindow::setupManagementTab() {

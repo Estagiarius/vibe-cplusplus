@@ -18,6 +18,8 @@
  /app/src/MainWindow.h
  /app/src/ManagementWidgets.cpp
  /app/src/ManagementWidgets.h
+ /app/src/SettingsDialog.cpp
+ /app/src/SettingsDialog.h
  /app/src/main.cpp
  /usr/bin/cmake
  /usr/include/alloca.h
@@ -477,6 +479,7 @@
  /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlexports.h
  /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlglobal.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHeaderView
@@ -498,6 +501,7 @@
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h
@@ -687,12 +691,14 @@ CMakeFiles/AcademicManager.dir/AcademicManager_autogen/mocs_compilation.cpp.o
  /app/src/GradebookView.h
  /app/src/MainWindow.h
  /app/src/ManagementWidgets.h
+ /app/src/SettingsDialog.h
  /app/build/AcademicManager_autogen/UVLADIE3JM/moc_AIClient.cpp
  /app/build/AcademicManager_autogen/UVLADIE3JM/moc_AcademicManager.cpp
  /app/build/AcademicManager_autogen/UVLADIE3JM/moc_DatabaseManager.cpp
  /app/build/AcademicManager_autogen/UVLADIE3JM/moc_GradebookView.cpp
  /app/build/AcademicManager_autogen/UVLADIE3JM/moc_MainWindow.cpp
  /app/build/AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp
+ /app/build/AcademicManager_autogen/UVLADIE3JM/moc_SettingsDialog.cpp
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h
@@ -1134,6 +1140,7 @@ CMakeFiles/AcademicManager.dir/AcademicManager_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlexports.h
  /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlglobal.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHeaderView
@@ -1155,6 +1162,7 @@ CMakeFiles/AcademicManager.dir/AcademicManager_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h
@@ -2853,6 +2861,7 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o
  /app/src/GradebookView.h
  /app/src/MainWindow.h
  /app/src/ManagementWidgets.h
+ /app/src/SettingsDialog.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h
@@ -3230,6 +3239,7 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qversiontagging.h
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/QAction
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QStandardItemModel
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qaction.h
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qbitmap.h
@@ -3293,6 +3303,7 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o
  /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlexports.h
  /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlglobal.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QFormLayout
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout
@@ -3301,6 +3312,8 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLayout
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLineEdit
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMenu
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMenuBar
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMessageBox
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QPushButton
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTabWidget
@@ -3328,6 +3341,8 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayoutitem.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlineedit.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmainwindow.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmenu.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmenubar.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmessagebox.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qpushbutton.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h

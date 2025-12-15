@@ -16,6 +16,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/app/src/GradebookView.cpp" "CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/GradebookView.cpp.o.d"
   "/app/src/MainWindow.cpp" "CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o.d"
   "/app/src/ManagementWidgets.cpp" "CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o.d"
+  "/app/src/SettingsDialog.cpp" "CMakeFiles/AcademicManager.dir/src/SettingsDialog.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/SettingsDialog.cpp.o.d"
   "/app/src/main.cpp" "CMakeFiles/AcademicManager.dir/src/main.cpp.o" "gcc" "CMakeFiles/AcademicManager.dir/src/main.cpp.o.d"
   )
 

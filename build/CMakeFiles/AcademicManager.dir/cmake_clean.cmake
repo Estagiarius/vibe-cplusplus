@@ -20,6 +20,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o.d"
   "CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o"
   "CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.o.d"
+  "CMakeFiles/AcademicManager.dir/src/SettingsDialog.cpp.o"
+  "CMakeFiles/AcademicManager.dir/src/SettingsDialog.cpp.o.d"
   "CMakeFiles/AcademicManager.dir/src/main.cpp.o"
   "CMakeFiles/AcademicManager.dir/src/main.cpp.o.d"
 )

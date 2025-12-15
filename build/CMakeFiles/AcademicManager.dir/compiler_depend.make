@@ -17,6 +17,8 @@ AcademicManager_autogen/timestamp: /app/CMakeLists.txt \
   /app/src/MainWindow.h \
   /app/src/ManagementWidgets.cpp \
   /app/src/ManagementWidgets.h \
+  /app/src/SettingsDialog.cpp \
+  /app/src/SettingsDialog.h \
   /app/src/main.cpp \
   /usr/bin/cmake \
   /usr/include/alloca.h \
@@ -476,6 +478,7 @@ AcademicManager_autogen/timestamp: /app/CMakeLists.txt \
   /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlexports.h \
   /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlglobal.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHeaderView \
@@ -497,6 +500,7 @@ AcademicManager_autogen/timestamp: /app/CMakeLists.txt \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h \
@@ -685,12 +689,14 @@ CMakeFiles/AcademicManager.dir/AcademicManager_autogen/mocs_compilation.cpp.o: A
   /app/src/GradebookView.h \
   /app/src/MainWindow.h \
   /app/src/ManagementWidgets.h \
+  /app/src/SettingsDialog.h \
   AcademicManager_autogen/UVLADIE3JM/moc_AIClient.cpp \
   AcademicManager_autogen/UVLADIE3JM/moc_AcademicManager.cpp \
   AcademicManager_autogen/UVLADIE3JM/moc_DatabaseManager.cpp \
   AcademicManager_autogen/UVLADIE3JM/moc_GradebookView.cpp \
   AcademicManager_autogen/UVLADIE3JM/moc_MainWindow.cpp \
   AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp \
+  AcademicManager_autogen/UVLADIE3JM/moc_SettingsDialog.cpp \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -1132,6 +1138,7 @@ CMakeFiles/AcademicManager.dir/AcademicManager_autogen/mocs_compilation.cpp.o: A
   /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlexports.h \
   /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlglobal.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHeaderView \
@@ -1153,6 +1160,7 @@ CMakeFiles/AcademicManager.dir/AcademicManager_autogen/mocs_compilation.cpp.o: A
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h \
@@ -2846,6 +2854,7 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o: /app/src/MainWindow.cpp \
   /app/src/GradebookView.h \
   /app/src/MainWindow.h \
   /app/src/ManagementWidgets.h \
+  /app/src/SettingsDialog.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -3223,6 +3232,7 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o: /app/src/MainWindow.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qversiontagging.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/QAction \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/QStandardItemModel \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qaction.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qbitmap.h \
@@ -3286,6 +3296,7 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o: /app/src/MainWindow.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlexports.h \
   /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsqlglobal.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QFormLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout \
@@ -3294,6 +3305,8 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o: /app/src/MainWindow.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLineEdit \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMenu \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMenuBar \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMessageBox \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QPushButton \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTabWidget \
@@ -3321,6 +3334,8 @@ CMakeFiles/AcademicManager.dir/src/MainWindow.cpp.o: /app/src/MainWindow.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayoutitem.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlineedit.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmainwindow.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmenu.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmenubar.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmessagebox.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qpushbutton.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
@@ -4319,7 +4334,13 @@ CMakeFiles/AcademicManager.dir/src/main.cpp.o: /app/src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qcoreapplication.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmenubar.h:
+
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qformlayout.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMenuBar:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMenu:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLayout:
 
@@ -4361,8 +4382,6 @@ CMakeFiles/AcademicManager.dir/src/main.cpp.o: /app/src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h:
 
-/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
-
 /usr/include/x86_64-linux-gnu/qt6/QtNetwork/QSslError:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
@@ -4388,6 +4407,10 @@ CMakeFiles/AcademicManager.dir/src/main.cpp.o: /app/src/main.cpp \
 /usr/include/c++/13/bits/hashtable.h:
 
 /usr/include/c++/13/bits/chrono.h:
+
+/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
+
+AcademicManager_autogen/UVLADIE3JM/moc_SettingsDialog.cpp:
 
 AcademicManager_autogen/UVLADIE3JM/moc_MainWindow.cpp:
 
@@ -4519,8 +4542,6 @@ AcademicManager_autogen/UVLADIE3JM/moc_GradebookView.cpp:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6DBus/Qt6DBusVersionlessTargets.cmake:
 
-/usr/lib/x86_64-linux-gnu/cmake/Qt6DBus/Qt6DBusTargets-none.cmake:
-
 /usr/lib/x86_64-linux-gnu/cmake/Qt6DBus/Qt6DBusMacros.cmake:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6DBus/Qt6DBusDependencies.cmake:
@@ -4574,6 +4595,16 @@ AcademicManager_autogen/UVLADIE3JM/moc_GradebookView.cpp:
 /usr/lib/x86_64-linux-gnu/cmake/Qt6/QtPublicFindPackageHelpers.cmake:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6/QtPublicDependencyHelpers.cmake:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtPublicAppleHelpers.cmake:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtFeatureCommon.cmake:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtFeature.cmake:
+
+/usr/include/c++/13/version:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6VersionlessTargets.cmake:
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
@@ -4685,10 +4716,6 @@ AcademicManager_autogen/UVLADIE3JM/moc_GradebookView.cpp:
 
 /usr/include/stdc-predef.h:
 
-/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h:
-
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qtextstream.h:
 
 /usr/include/c++/13/bits/ranges_base.h:
@@ -4755,8 +4782,6 @@ AcademicManager_autogen/UVLADIE3JM/moc_GradebookView.cpp:
 
 /usr/include/c++/13/climits:
 
-/usr/include/c++/13/iterator:
-
 /usr/include/c++/13/bits/ios_base.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qtgui-config.h:
@@ -4817,6 +4842,24 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 
 /usr/include/c++/13/chrono:
 
+/usr/include/c++/13/tr1/gamma.tcc:
+
+/usr/include/c++/13/ext/atomicity.h:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt6Gui/Qt6GuiVersionlessTargets.cmake:
+
+/usr/include/c++/13/cctype:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersionImpl.cmake:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qmetacontainer.h:
+
+/usr/include/c++/13/optional:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qcoreapplication_platform.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qcryptographichash.h:
@@ -4834,6 +4877,12 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 /usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkVersionlessTargets.cmake:
 
 /usr/include/c++/13/bits/exception.h:
+
+/app/src/SettingsDialog.h:
+
+/usr/include/c++/13/bits/stl_uninitialized.h:
+
+/usr/include/c++/13/bits/new_allocator.h:
 
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 
@@ -4879,12 +4928,6 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 
 /usr/include/c++/13/bits/basic_ios.h:
 
-/usr/include/c++/13/bits/iterator_concepts.h:
-
-/usr/include/c++/13/cerrno:
-
-/usr/include/c++/13/bits/stringfwd.h:
-
 /usr/lib/x86_64-linux-gnu/cmake/Qt6CoreTools/Qt6CoreToolsVersionlessTargets.cmake:
 
 /usr/include/c++/13/pstl/execution_defs.h:
@@ -4893,15 +4936,27 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 
 /usr/include/c++/13/bits/basic_ios.tcc:
 
-/usr/include/c++/13/stdexcept:
-
-/usr/include/c++/13/clocale:
-
-/usr/include/x86_64-linux-gnu/sys/syscall.h:
-
 /usr/include/c++/13/bits/allocated_ptr.h:
 
+/usr/include/c++/13/bits/stl_pair.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtNetwork/QSslPreSharedKeyAuthenticator:
+
+/usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtGui/qbitmap.h:
+
+/usr/include/c++/13/array:
+
+/usr/include/c++/13/bits/hash_bytes.h:
+
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt6Gui/Qt6GuiConfig.cmake:
+
+/usr/include/c++/13/bits/node_handle.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/c++/13/backward/auto_ptr.h:
 
@@ -4953,18 +5008,6 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qrgb.h:
 
-/usr/include/c++/13/tr1/gamma.tcc:
-
-/usr/include/c++/13/ext/atomicity.h:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6Gui/Qt6GuiVersionlessTargets.cmake:
-
-/usr/include/c++/13/cctype:
-
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
@@ -4978,14 +5021,6 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTextEdit:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtNetwork/QSslPreSharedKeyAuthenticator:
-
-/usr/include/x86_64-linux-gnu/bits/errno.h:
-
-/usr/include/c++/13/bits/stl_pair.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtGui/qbitmap.h:
 
 /usr/include/c++/13/bits/mofunc_impl.h:
 
@@ -5007,31 +5042,7 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtNetwork/QSslConfiguration:
 
-/usr/lib/x86_64-linux-gnu/cmake/Qt6Gui/Qt6GuiTargets-none.cmake:
-
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qpoint.h:
-
-/usr/include/c++/13/bits/cxxabi_forced.h:
-
-/app/src/MainWindow.cpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h:
-
-/app/src/GradebookView.h:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6Gui/Qt6GuiConfig.cmake:
-
-/usr/include/c++/13/bits/node_handle.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersionImpl.cmake:
-
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qmetacontainer.h:
-
-/usr/include/c++/13/optional:
+/usr/include/c++/13/bits/stl_iterator_base_funcs.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/QDebug:
 
@@ -5041,11 +5052,21 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgetsexports.h:
 
-/usr/include/c++/13/bits/stl_iterator_base_funcs.h:
+/usr/lib/x86_64-linux-gnu/cmake/Qt6Gui/Qt6GuiTargets-none.cmake:
 
-/usr/include/c++/13/bits/hash_bytes.h:
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qpoint.h:
 
-/usr/include/c++/13/array:
+/usr/include/c++/13/bits/cxxabi_forced.h:
+
+/app/src/MainWindow.cpp:
+
+/usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h:
+
+/app/src/GradebookView.h:
+
+/usr/include/c++/13/iterator:
+
+/app/src/SettingsDialog.cpp:
 
 /usr/include/c++/13/algorithm:
 
@@ -5063,9 +5084,25 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 
 /usr/include/c++/13/bits/stl_raw_storage_iter.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemview.h:
+
+/usr/include/c++/13/bits/stream_iterator.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qdir.h:
+
+/usr/include/c++/13/tr1/special_function_util.h:
+
+/usr/include/c++/13/tr1/poly_laguerre.tcc:
+
+/usr/include/x86_64-linux-gnu/qt6/QtGui/qwindowdefs.h:
+
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiexports.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtNetwork/qssl.h:
 
 /usr/include/c++/13/bits/locale_classes.tcc:
 
@@ -5087,17 +5124,17 @@ AcademicManager_autogen/UVLADIE3JM/moc_ManagementWidgets.cpp:
 
 /usr/include/c++/13/backward/binders.h:
 
-/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemview.h:
+/usr/include/c++/13/bits/iterator_concepts.h:
 
-/usr/include/c++/13/bits/stream_iterator.h:
+/usr/include/c++/13/cerrno:
 
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qdir.h:
+/usr/include/c++/13/bits/stringfwd.h:
 
-/usr/include/c++/13/tr1/special_function_util.h:
+/usr/include/c++/13/stdexcept:
 
-/usr/include/c++/13/tr1/poly_laguerre.tcc:
+/usr/include/c++/13/clocale:
 
-/usr/include/x86_64-linux-gnu/qt6/QtGui/qwindowdefs.h:
+/usr/include/x86_64-linux-gnu/sys/syscall.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qtransform.h:
 
@@ -5225,19 +5262,15 @@ AcademicManager_autogen/moc_predefs.h:
 
 /usr/include/c++/13/bits/functexcept.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h:
+
 /usr/include/c++/13/bits/stl_heap.h:
 
 /usr/include/c++/13/bits/atomic_lockfree_defines.h:
 
 /usr/include/syscall.h:
-
-/usr/include/c++/13/bits/stl_uninitialized.h:
-
-/usr/include/c++/13/bits/new_allocator.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtNetwork/qssl.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiexports.h:
 
 /usr/include/c++/13/locale:
 
@@ -5272,6 +5305,12 @@ AcademicManager_autogen/moc_predefs.h:
 /usr/include/c++/13/bits/uses_allocator_args.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtSql/qtsql-config.h:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt6DBus/Qt6DBusTargets-none.cmake:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
@@ -5635,10 +5674,6 @@ CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qkeysequence.h:
 
-/usr/include/c++/13/version:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6VersionlessTargets.cmake:
-
 /usr/include/c++/13/bits/concept_check.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h:
@@ -5662,6 +5697,8 @@ CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:
 /usr/include/x86_64-linux-gnu/qt6/QtNetwork/QNetworkAccessManager:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qstandarditemmodel.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtGui/QAction:
 
 /usr/include/c++/13/bits/ranges_algo.h:
 
@@ -5743,6 +5780,8 @@ CMakeFiles/3.28.3/CMakeSystem.cmake:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTableView:
 
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmenu.h:
+
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTableWidget:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h:
@@ -5812,9 +5851,3 @@ CMakeFiles/3.28.3/CMakeSystem.cmake:
 /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Targets.cmake:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtFeature.cmake:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtFeatureCommon.cmake:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtPublicAppleHelpers.cmake:

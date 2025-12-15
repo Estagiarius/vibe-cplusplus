@@ -471,6 +471,30 @@ src/ManagementWidgets.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/ManagementWidgets.cpp.s
 .PHONY : src/ManagementWidgets.cpp.s
 
+src/SettingsDialog.o: src/SettingsDialog.cpp.o
+.PHONY : src/SettingsDialog.o
+
+# target to build an object file
+src/SettingsDialog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/SettingsDialog.cpp.o
+.PHONY : src/SettingsDialog.cpp.o
+
+src/SettingsDialog.i: src/SettingsDialog.cpp.i
+.PHONY : src/SettingsDialog.i
+
+# target to preprocess a source file
+src/SettingsDialog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/SettingsDialog.cpp.i
+.PHONY : src/SettingsDialog.cpp.i
+
+src/SettingsDialog.s: src/SettingsDialog.cpp.s
+.PHONY : src/SettingsDialog.s
+
+# target to generate assembly for a file
+src/SettingsDialog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AcademicManager.dir/build.make CMakeFiles/AcademicManager.dir/src/SettingsDialog.cpp.s
+.PHONY : src/SettingsDialog.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -588,6 +612,9 @@ help:
 	@echo "... src/ManagementWidgets.o"
 	@echo "... src/ManagementWidgets.i"
 	@echo "... src/ManagementWidgets.s"
+	@echo "... src/SettingsDialog.o"
+	@echo "... src/SettingsDialog.i"
+	@echo "... src/SettingsDialog.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

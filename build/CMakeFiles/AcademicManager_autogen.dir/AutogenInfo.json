@@ -233,6 +233,12 @@
 			"MU",
 			"UVLADIE3JM/moc_ManagementWidgets.cpp",
 			null
+		],
+		[
+			"/app/src/SettingsDialog.h",
+			"MU",
+			"UVLADIE3JM/moc_SettingsDialog.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -310,6 +316,7 @@
 		[ "/app/src/GradebookView.cpp", "MU", null ],
 		[ "/app/src/MainWindow.cpp", "MU", null ],
 		[ "/app/src/ManagementWidgets.cpp", "MU", null ],
+		[ "/app/src/SettingsDialog.cpp", "MU", null ],
 		[ "/app/src/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

@@ -36,6 +36,9 @@ private slots:
     // Sync slots (refresh views when tabs change)
     void onTabChanged(int index);
 
+    // Settings
+    void onSettings();
+
 private:
     std::shared_ptr<AcademicManager> m_manager;
     std::shared_ptr<AIClient> m_aiClient;

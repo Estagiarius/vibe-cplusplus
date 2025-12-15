@@ -5,3 +5,4 @@
 #include "UVLADIE3JM/moc_GradebookView.cpp"
 #include "UVLADIE3JM/moc_MainWindow.cpp"
 #include "UVLADIE3JM/moc_ManagementWidgets.cpp"
+#include "UVLADIE3JM/moc_SettingsDialog.cpp"
