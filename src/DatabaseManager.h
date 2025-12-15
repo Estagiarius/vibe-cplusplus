@@ -54,16 +54,25 @@ public:
 
     // Students
     bool addStudent(const QString& name, const QString& registration);
+    bool updateStudent(int id, const QString& name, const QString& registration);
+    bool deleteStudent(int id);
     QList<Student> getAllStudents();
+    std::optional<Student> getStudentById(int id);
     std::optional<Student> getStudentByRegistration(const QString& reg);
 
     // Courses
     bool addCourse(const QString& name, const QString& description);
+    bool updateCourse(int id, const QString& name, const QString& description);
+    bool deleteCourse(int id);
     QList<Course> getAllCourses();
+    std::optional<Course> getCourseById(int id);
 
     // Classes
     bool addClass(int courseId, const QString& semester);
+    bool updateClass(int id, int courseId, const QString& semester);
+    bool deleteClass(int id);
     QList<Class> getAllClasses();
+    std::optional<Class> getClassById(int id);
 
     // Enrollments/Grades
     bool enrollStudent(int studentId, int classId);

@@ -20,6 +20,9 @@ add_executable(AcademicManager
     src/AIClient.cpp
     src/ManagementWidgets.cpp
     src/GradebookView.cpp
+    src/EditStudentDialog.h
+    src/EditCourseDialog.h
+    src/EditClassDialog.h
 )
 
 target_include_directories(AcademicManager PRIVATE src)
