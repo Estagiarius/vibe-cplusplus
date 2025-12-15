@@ -298,3 +298,36 @@ bool AcademicManager::updateGradesById(int studentId, int classId, double b1, do
 bool AcademicManager::enrollStudentById(int studentId, int classId) {
     return m_db->enrollStudent(studentId, classId);
 }
+
+QList<AttendanceRecord> AcademicManager::getAttendanceForClass(int classId, const QString& date) {
+    return m_db->getAttendance(classId, date);
+}
+
+bool AcademicManager::updateAttendance(int studentId, int classId, const QString& date, bool present) {
+    return m_db->addOrUpdateAttendance(studentId, classId, date, present);
+}
+
+QString AcademicManager::exportClassGradesAsCsv(int classId) {
+    auto enrollments = getClassEnrollments(classId);
+    if (enrollments.isEmpty()) {
+        return ""; // Or an error message
+    }
+
+    QString csv = "Student Name,Registration,B1,B2,B3,B4,Final,Average,Status\n";
+
+    for (const auto& enrollment : enrollments) {
+        StudentStatus status = calculateStatus(enrollment.studentId, classId);
+        csv += QString("\"%1\",%2,%3,%4,%5,%6,%7,%8,\"%9\"\n")
+            .arg(enrollment.studentName)
+            .arg(enrollment.studentReg)
+            .arg(enrollment.grade.b1)
+            .arg(enrollment.grade.b2)
+            .arg(enrollment.grade.b3)
+            .arg(enrollment.grade.b4)
+            .arg(enrollment.grade.hasFinal ? QString::number(enrollment.grade.finalGrade) : "")
+            .arg(status.average)
+            .arg(status.statusMessage);
+    }
+
+    return csv;
+}

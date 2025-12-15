@@ -1,0 +1,53 @@
+Start testing: Dec 15 16:57 UTC
+----------------------------------------------------------
+1/2 Testing: TestLogic
+1/2 Test: TestLogic
+Command: "/app/build/TestLogic"
+Directory: /app/build
+"TestLogic" start time: Dec 15 16:57 UTC
+Output:
+----------------------------------------------------------
+********* Start testing of TestLogic *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : TestLogic::initTestCase()
+PASS   : TestLogic::testStudentCRUD()
+PASS   : TestLogic::testCourseAndClass()
+PASS   : TestLogic::testGradesApproval()
+PASS   : TestLogic::testGradesFailure()
+PASS   : TestLogic::testFinalMention()
+PASS   : TestLogic::cleanupTestCase()
+Totals: 7 passed, 0 failed, 0 skipped, 0 blacklisted, 14ms
+********* Finished testing of TestLogic *********
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"TestLogic" end time: Dec 15 16:57 UTC
+"TestLogic" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: TestValidation
+2/2 Test: TestValidation
+Command: "/app/build/TestValidation"
+Directory: /app/build
+"TestValidation" start time: Dec 15 16:57 UTC
+Output:
+----------------------------------------------------------
+********* Start testing of TestLogicValidation *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : TestLogicValidation::initTestCase()
+PASS   : TestLogicValidation::testInvalidGrades()
+PASS   : TestLogicValidation::testRecoveryLogic()
+PASS   : TestLogicValidation::testInputSanitization()
+PASS   : TestLogicValidation::cleanupTestCase()
+Totals: 5 passed, 0 failed, 0 skipped, 0 blacklisted, 3ms
+********* Finished testing of TestLogicValidation *********
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TestValidation" end time: Dec 15 16:57 UTC
+"TestValidation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Dec 15 16:57 UTC

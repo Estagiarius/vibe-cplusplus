@@ -79,6 +79,20 @@ bool DatabaseManager::createTables() {
         return false;
     }
 
+    // Attendance Table
+    if (!query.exec("CREATE TABLE IF NOT EXISTS attendance ("
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    "student_id INTEGER, "
+                    "class_id INTEGER, "
+                    "date TEXT NOT NULL, " // YYYY-MM-DD
+                    "present INTEGER NOT NULL, " // 1 for present, 0 for absent
+                    "FOREIGN KEY(student_id) REFERENCES students(id), "
+                    "FOREIGN KEY(class_id) REFERENCES classes(id), "
+                    "UNIQUE(student_id, class_id, date))")) {
+        qCritical() << "Error creating attendance table:" << query.lastError().text();
+        return false;
+    }
+
     return true;
 }
 
@@ -119,6 +133,44 @@ std::optional<Student> DatabaseManager::getStudentByRegistration(const QString& 
         };
     }
     return std::nullopt;
+}
+
+bool DatabaseManager::addOrUpdateAttendance(int studentId, int classId, const QString& date, bool present) {
+    QSqlQuery query;
+    // Use INSERT OR REPLACE (UPSERT) to simplify logic
+    query.prepare("INSERT OR REPLACE INTO attendance (student_id, class_id, date, present) "
+                  "VALUES (:sid, :cid, :date, :present)");
+    query.bindValue(":sid", studentId);
+    query.bindValue(":cid", classId);
+    query.bindValue(":date", date);
+    query.bindValue(":present", present ? 1 : 0);
+
+    if (!query.exec()) {
+        qWarning() << "Error updating attendance:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+QList<AttendanceRecord> DatabaseManager::getAttendance(int classId, const QString& date) {
+    QList<AttendanceRecord> list;
+    QSqlQuery query;
+    query.prepare("SELECT student_id, present FROM attendance WHERE class_id = :cid AND date = :date");
+    query.bindValue(":cid", classId);
+    query.bindValue(":date", date);
+
+    if (query.exec()) {
+        while (query.next()) {
+            list.append({
+                query.value(0).toInt(),
+                date,
+                query.value(1).toBool()
+            });
+        }
+    } else {
+        qWarning() << "Error fetching attendance:" << query.lastError().text();
+    }
+    return list;
 }
 
 QList<ClassEnrollment> DatabaseManager::getClassEnrollments(int classId) {

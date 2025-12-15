@@ -39,6 +39,13 @@ public:
     bool updateGradesById(int studentId, int classId, double b1, double b2, double b3, double b4, double finalGrade);
     bool enrollStudentById(int studentId, int classId);
 
+    // Attendance
+    QList<AttendanceRecord> getAttendanceForClass(int classId, const QString& date);
+    bool updateAttendance(int studentId, int classId, const QString& date, bool present);
+
+    // Export
+    QString exportClassGradesAsCsv(int classId);
+
 private:
     std::shared_ptr<DatabaseManager> m_db;
 

@@ -66,10 +66,10 @@ include CMakeFiles/TestLogic_autogen_timestamp_deps.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/TestLogic_autogen_timestamp_deps.dir/progress.make
 
-CMakeFiles/TestLogic_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Sql.so.6.4.2
-CMakeFiles/TestLogic_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
-CMakeFiles/TestLogic_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Network.so.6.4.2
 CMakeFiles/TestLogic_autogen_timestamp_deps: /usr/lib/qt6/libexec/uic
+CMakeFiles/TestLogic_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
+CMakeFiles/TestLogic_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Sql.so.6.4.2
+CMakeFiles/TestLogic_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Network.so.6.4.2
 CMakeFiles/TestLogic_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Test.so.6.4.2
 
 TestLogic_autogen_timestamp_deps: CMakeFiles/TestLogic_autogen_timestamp_deps
